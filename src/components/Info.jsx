@@ -4,14 +4,32 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faImdb } from '@fortawesome/free-brands-svg-icons';
 import Recomendation from "./Recomendation";
 import { MyContext } from "./Context/WatchListContext";
+import axios from "axios";
+import { API_KEY } from "../assets/key";
 
 function Info() {
-  const {watchList, setWatchList} = useContext(MyContext)
+  const { watchList, setWatchList } = useContext(MyContext);
   const location = useLocation();
   const movie = location.state?.movie;
   const [isLiked, setIsLiked] = useState(false);
+  const [additional, setAdditional] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${API_KEY}&language=en-US`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setAdditional(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [movie]);
 
   useEffect(() => {
     if (!movie) return;
@@ -87,6 +105,26 @@ function Info() {
             >
               🎬 Watch Trailer
             </a>
+            {additional.homepage && (
+              <a
+                href={additional.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+              >
+                🏠 Home Page
+              </a>
+            )}
+            {additional.imdb_id && (
+              <a
+              href={`https://www.imdb.com/title/${additional.imdb_id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+            >
+              <FontAwesomeIcon icon={faImdb} className="text-black bg-amber-400 mr-2" />IMDB
+            </a>
+            )}
           </div>
         </div>
       </div>
@@ -114,13 +152,20 @@ function Info() {
           🔥 <span className="font-semibold">Popularity:</span>{" "}
           {movie.popularity.toFixed(3)}
         </p>
-        
+
         <p className="text-lg">
           🔞 <span className="font-semibold">Adult:</span>{" "}
           {movie.adult ? "Yes" : "No"}
         </p>
+        <p className="text-lg">
+          {additional.budget > 0 && (
+            <span className="font-semibold">
+              💰 Budget: {additional.budget}
+            </span>
+          )}
+        </p>
       </div>
-      <Recomendation movID = {movie.id}/>
+      <Recomendation movID={movie.id} />
     </div>
   );
 }

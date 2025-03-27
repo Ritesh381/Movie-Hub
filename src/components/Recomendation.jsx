@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-const API_KEY = "6afe036d391f25fd70b37bbb83def578";
+import { API_KEY } from "../assets/key";
 import MovieCard from "./MovieCard";
 
 function Recomendation({ movID }) {

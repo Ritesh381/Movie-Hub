@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import axios from "axios";
 import Pagination from "./Pagination";
+import { API_KEY } from "../assets/key";
 
-const API_KEY = "6afe036d391f25fd70b37bbb83def578";
 
 function Trending() {
   const [movies, setMovies] = useState([]);
