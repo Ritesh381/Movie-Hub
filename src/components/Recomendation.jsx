@@ -21,13 +21,14 @@ function Recomendation({ movID }) {
       .catch((error) => console.log("Error: " + error));
   }, [movID]);
 
+  if(movies.length == 0)return(<></>)
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-3xl font-bold text-orange-300 my-5">
-        Recommendations
+        More like this
       </h1>
 
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-5 gap-6">
         {loading ? (
           <div className="text-white text-lg">Loading...</div>
         ) : (

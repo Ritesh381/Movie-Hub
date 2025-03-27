@@ -1,78 +1,85 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleInfo,
-  faHeart as solidHeart,
-} from "@fortawesome/free-solid-svg-icons";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import { MyContext } from "./Context/WatchListContext";
+import { Star, Info, Heart } from 'lucide-react';
 
-function MovieCard({ movieObj }) {
+function MovieCard({ movieObj, className = '' }) {
   const { watchList, setWatchList } = useContext(MyContext);
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    watchList.forEach((mov) => {
-      if (movieObj.id == mov.id) {
-        setIsLiked(true);
-        return;
-      }
-    }, []);
-  });
+    const liked = watchList.some((mov) => movieObj.id === mov.id);
+    setIsLiked(liked);
+  }, [watchList, movieObj.id]);
 
   function liked() {
-    if (isLiked) {
-      // remove from watchList
-      const updatedList = watchList.filter((movie) => movie.id !== movieObj.id);
-      setWatchList(updatedList);
-      localStorage.setItem("watchList", JSON.stringify(updatedList));
-    } else {
-      // add to watchList
-      const updatedList = [...watchList, movieObj];
-      setWatchList(updatedList);
-      localStorage.setItem("watchList", JSON.stringify(updatedList));
-    }
+    const updatedList = isLiked
+      ? watchList.filter((movie) => movie.id !== movieObj.id)
+      : [...watchList, movieObj];
+    
+    setWatchList(updatedList);
+    localStorage.setItem("watchList", JSON.stringify(updatedList));
     setIsLiked(!isLiked);
   }
 
   return (
-    <div className="relative w-[250px] h-[350px] rounded-lg overflow-hidden shadow-lg hover:scale-105 duration-300 m-5">
+    <div className={`relative flex-shrink-0 w-40 sm:w-48 md:w-56 h-60 sm:h-72 md:h-80 
+      rounded-lg overflow-hidden shadow-lg 
+      hover:scale-105 duration-300 group ${className}`}>
       {movieObj.poster_path || movieObj.backdrop_path ? (
         <img
           src={`https://image.tmdb.org/t/p/original/${
             movieObj.poster_path || movieObj.backdrop_path
           }`}
           className="w-full h-full object-cover"
-          alt="Movie Poster"
+          alt={`Poster for ${movieObj.title}`}
         />
       ) : (
-        <span className="text-amber-400 absolute inset-0 flex items-center justify-center">
-          No Image Found
-        </span>
+        <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+          <span className="text-amber-400 text-sm text-center">
+            No Image Available
+          </span>
+        </div>
       )}
 
-      <div className="absolute bottom-0 w-full bg-black/70 text-white text-center text-lg p-2">
-        {movieObj.title}
-      </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex flex-col justify-end">
+        <div className="absolute bottom-0 w-full bg-black/70 text-white text-center 
+          text-xs sm:text-sm md:text-base p-1 sm:p-2">
+          {movieObj.title.length > 20 
+            ? `${movieObj.title.slice(0, 20)}...` 
+            : movieObj.title}
+        </div>
 
-      <div className="absolute top-2 right-2 flex gap-2">
-        <p className="text-white bg-black/50 p-2 rounded-full hover:bg-black/70">
-          ⭐ {movieObj.vote_average ? movieObj.vote_average.toFixed(1) : "N/A"}
-        </p>
+        <div className="absolute top-2 right-2 flex gap-2 space-x-1">
+          <div className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
+            hover:bg-black/70 flex items-center">
+            <span className="text-xs sm:text-sm">
+            ⭐ {movieObj.vote_average ? movieObj.vote_average.toFixed(1) : "N/A"}
+            </span>
+          </div>
 
-        <Link to="/info" state={{ movie: movieObj }}>
-          <button className="text-white bg-black/50 p-2 rounded-full hover:bg-black/70">
-            <FontAwesomeIcon icon={faCircleInfo} />
+          <Link 
+            to="/info" 
+            state={{ movie: movieObj }}
+            className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
+              hover:bg-black/70 flex items-center justify-center"
+          >
+            <Info className="w-3 h-3 sm:w-4 sm:h-4" />
+          </Link>
+
+          <button
+            className="text-red-600 bg-black/50 p-1 sm:p-2 rounded-full 
+              hover:bg-black/70 flex items-center justify-center"
+            onClick={liked}
+          >
+            <Heart 
+              className={`w-3 h-3 sm:w-4 sm:h-4 
+                ${isLiked ? 'fill-red-600' : 'fill-transparent'}`} 
+              strokeWidth={1.5}
+            />
           </button>
-        </Link>
-
-        <button
-          className="text-red-600 bg-black/50 p-2 rounded-full hover:bg-black/70"
-          onClick={liked}
-        >
-          <FontAwesomeIcon icon={isLiked ? solidHeart : regularHeart} />
-        </button>
+        </div>
       </div>
     </div>
   );

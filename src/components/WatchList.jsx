@@ -9,7 +9,13 @@ function WatchList() {
   const [genres, setGenres] = useState([]);
   const [searchField, setSearchField] = useState("");
   const [activeGenre, setActiveGenre] = useState("All Genre");
-  const [view, setView] = useState("Detail");
+  const [view, setView] = useState(()=>{
+    return localStorage.getItem("WatchListView") || "Detail";
+  });
+
+  useEffect(()=>{
+    localStorage.setItem("WatchListView", view)
+  },[view])
 
   useEffect(() => {
     const newGenres = new Set();

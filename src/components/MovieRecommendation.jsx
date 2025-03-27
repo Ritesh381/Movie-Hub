@@ -2,7 +2,7 @@ import React from 'react'
 
 function MovieRecommendation() {
   return (
-    <div>Movie Recommendation</div>
+    <div className='text-white'>AI Recommendation will be available soon</div>
   )
 }
 

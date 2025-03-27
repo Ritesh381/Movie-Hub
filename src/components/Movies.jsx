@@ -2,13 +2,15 @@ import React from 'react'
 import Trending from './Trending'
 import Banner from './Banner'
 import './main.css'
+import Discover from './Discover'
 
 function Movies() {
   return (
-    <div>
+    <div >
       <Banner />
-      <Trending ></Trending>
-      
+      <Trending />
+      <br />
+      <Discover />
     </div>
   )
 }

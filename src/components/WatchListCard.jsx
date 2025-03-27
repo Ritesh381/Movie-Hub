@@ -7,13 +7,13 @@ function WatchListCard({searchField, activeGenre}) {
   const { watchList } = useContext(MyContext);
 
   return (
-    <div className="text-amber-200 p-5">
+    <div className="flex text-amber-200 p-5 items-center justify-center">
       {watchList.length === 0 ? (
         <p className="text-center text-xl font-semibold">
           No movies in your watchlist 😢
         </p>
       ) : (
-        <div className="grid grid-cols-6 gap-6">
+        <div className="grid grid-cols-8 gap-7">
           {watchList
             .filter((movie) => {
               let matchesGenre = false;

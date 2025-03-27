@@ -1,7 +1,7 @@
 import React from "react";
 import "./main.css";
 
-function Pagination({ pageNext, pagePrev, pageNo, setPageNo }) {
+function Pagination({ pageNext, pagePrev, pageNo, setPageNo, totalPages=500 }) {
   return (
     <div className="text-white flex gap-5 items-center justify-center text-3xlpy-4">
       <button
@@ -19,7 +19,7 @@ function Pagination({ pageNext, pagePrev, pageNo, setPageNo }) {
         onChange={(e) => {
           let value = Number(e.target.value);
           if (value < 1) value = 1;
-          if (value > 900) value = 900;
+          if (value > totalPages) value = totalPages;
           setPageNo(value);
         }}
       />

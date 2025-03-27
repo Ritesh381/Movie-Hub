@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { faImdb } from '@fortawesome/free-brands-svg-icons';
+import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import Recomendation from "./Recomendation";
 import { MyContext } from "./Context/WatchListContext";
 import axios from "axios";
@@ -94,9 +94,10 @@ function Info() {
           <p className="text-gray-400 text-lg">{movie.overview}</p>
 
           <div className="flex gap-4 mt-4">
+          {movie.vote_average>0 && 
             <p className="bg-yellow-600 text-black px-3 py-1 rounded-full text-sm font-bold">
-              ⭐ {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
-            </p>
+              ⭐ {movie.vote_average.toFixed(1)}
+            </p>}
             <a
               href={`https://www.youtube.com/results?search_query=${movie.title} trailer`}
               target="_blank"
@@ -117,13 +118,17 @@ function Info() {
             )}
             {additional.imdb_id && (
               <a
-              href={`https://www.imdb.com/title/${additional.imdb_id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
-            >
-              <FontAwesomeIcon icon={faImdb} className="text-black bg-amber-400 mr-2" />IMDB
-            </a>
+                href={`https://www.imdb.com/title/${additional.imdb_id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+              >
+                <FontAwesomeIcon
+                  icon={faImdb}
+                  className="text-black bg-amber-400 mr-2"
+                />
+                IMDB
+              </a>
             )}
           </div>
         </div>
@@ -132,37 +137,82 @@ function Info() {
       {/* Additional Information */}
       <div className="mt-6 border-t border-gray-600 pt-4">
         <p className="text-lg">
-          📅 <span className="font-semibold">Release Date:</span>{" "}
-          {movie.release_date}
-        </p>
-
-        <p className="text-lg">
-          🎭 <span className="font-semibold">Genre:</span>{" "}
-          {movie.genre_ids.map((id) => genreData[id]).join(", ")}
-        </p>
-
-        <p className="text-lg">
-          🗣 <span className="font-semibold">Language:</span>{" "}
-          {new Intl.DisplayNames(["en"], { type: "language" }).of(
-            movie.original_language
-          )}
-        </p>
-
-        <p className="text-lg">
-          🔥 <span className="font-semibold">Popularity:</span>{" "}
-          {movie.popularity.toFixed(3)}
-        </p>
-
-        <p className="text-lg">
-          🔞 <span className="font-semibold">Adult:</span>{" "}
-          {movie.adult ? "Yes" : "No"}
-        </p>
-        <p className="text-lg">
-          {additional.budget > 0 && (
-            <span className="font-semibold">
-              💰 Budget: {additional.budget}
+          {movie.release_date && (
+            <span>
+              📅 <span className="font-semibold">Release Date: </span>
+              <span>{movie.release_date}</span>
             </span>
           )}
+        </p>
+
+        <p className="text-lg">
+          {movie.genre_ids.length > 0 && (
+            <span>
+              🎭 <span className="font-semibold">Genre: </span>
+              {movie.genre_ids.map((id) => genreData[id]).join(", ")}
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          {movie.original_language && (
+            <span>
+              🗣 <span className="font-semibold">Language: </span>
+              {new Intl.DisplayNames(["en"], { type: "language" }).of(
+                movie.original_language
+              )}
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          {additional.budget > 0 && (
+            <span>
+              <span className="font-semibold">💸 Budget: </span>$
+              {additional.budget / 1000000} M
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          {additional.origin_country && (
+            <span>
+              <span className="font-semibold">🌎 Origin country: </span>
+              {additional.origin_country.map((country) => country).join(", ")}
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          {additional.revenue > 0 && (
+            <span>
+              <span className="font-semibold">💰 Revenue: </span>$
+              {(additional.revenue / 1000000).toFixed(2)} M
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          {additional.runtime > 0 && (
+            <span>
+              <span className="font-semibold">⏳ Runtime: </span>
+              {additional.runtime} minutes
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          {movie.popularity > 0 && (
+            <span>
+              🔥 <span className="font-semibold">Popularity: </span>
+              {movie.popularity.toFixed(3)}
+            </span>
+          )}
+        </p>
+
+        <p className="text-lg">
+          🔞 <span className="font-semibold">Adult: </span>
+          {movie.adult ? "Yes" : "No"}
         </p>
       </div>
       <Recomendation movID={movie.id} />
