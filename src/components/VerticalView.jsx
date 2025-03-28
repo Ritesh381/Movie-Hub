@@ -3,6 +3,7 @@ import MovieCard from "./MovieCard";
 
 function VerticalView({ movies }) {
   const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     if (movies.length > 0) {
       setLoading(false);
@@ -10,9 +11,10 @@ function VerticalView({ movies }) {
       setLoading(true);
     }
   }, [movies]);
+  
   return (
     <div>
-      <div className="grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6">
         {loading ? (
           <div className="text-white text-lg">Loading...</div>
         ) : (
