@@ -42,28 +42,37 @@ function SearchPage() {
   }, [location.search, pageNo]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-white">
-      <div className="flex m-8">
+    <div className="flex flex-col justify-center items-center text-black">
+      <div className="flex m-6">
         <input
           value={searchQuery}
           onKeyDown={handelKeyDown}
           onChange={(e) => setSearchQuery(e.target.value)}
           type="text"
           placeholder="Search for Movies"
-          className="bg-white w-[700px] text-black text-2xl p-4 rounded-l-2xl border-blue-300"
+          className="bg-white w-full text-base md:text-xl p-2 md:p-3 rounded-l-2xl border-blue-300"
         />
         <button
-          className="bg-gray-200 w-[60px] rounded-r-2xl"
+          className="bg-gray-200 w-16 md:w-20 rounded-r-2xl text-base md:text-xl"
           onClick={handelSearch}
         >
-          {" "}
-          🔍{" "}
+          🔍
         </button>
       </div>
-
-      <VerticalView movies={movies}/>
-      <Pagination pageNo={pageNo} setPageNo={setPageNo} totalPages={totalPages}/>
-      
+      {movies.length == 0 ? (
+        <p className="text-4xl text-white self-start ml-5">
+          No results found for: {searchQuery}
+        </p>
+      ) : (
+        <div className="m-6">
+          <VerticalView movies={movies} />
+          <Pagination
+            pageNo={pageNo}
+            setPageNo={setPageNo}
+            totalPages={totalPages}
+          />
+        </div>
+      )}
     </div>
   );
 }
