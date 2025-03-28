@@ -31,7 +31,7 @@ function Banner() {
         />
       </div>
       {/* Searching area */}
-      <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4">
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4">
         <div className="max-w-xl mx-auto text-center">
           <p className="text-orange-300 font-bold text-xl md:text-2xl lg:text-3xl mb-2">
             What movie are you wondering of?
