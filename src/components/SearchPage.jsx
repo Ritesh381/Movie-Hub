@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { API_KEY } from "../assets/key";
 import axios from "axios";
-import MovieCard from "./MovieCard";
+import VerticalView from "./VerticalView";
 import Pagination from "./Pagination";
 
 function SearchPage() {
@@ -12,8 +12,6 @@ function SearchPage() {
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(500);
-  const pageNext = () => pageNo < totalPages && setPageNo(pageNo + 1);
-  const pagePrev = () => pageNo > 1 && setPageNo(pageNo - 1);
 
   const handelSearch = () => {
     if (searchQuery.trim()) {
@@ -62,26 +60,10 @@ function SearchPage() {
           🔍{" "}
         </button>
       </div>
-      {movies.length == 0 ? (
-        <p className="text-4xl self-start ml-5">
-          No results found for: {searchQuery}
-        </p>
-      ) : (
-        <div>
-          <div className="grid grid-cols-5 gap-6">
-            {movies.map((movie) => {
-              return <MovieCard key={movie.id} movieObj={movie} />;
-            })}
-          </div>
-          <Pagination
-            pageNext={pageNext}
-            pagePrev={pagePrev}
-            pageNo={pageNo}
-            setPageNo={setPageNo}
-            totalPages={totalPages}
-          />
-        </div>
-      )}
+
+      <VerticalView movies={movies}/>
+      <Pagination pageNo={pageNo} setPageNo={setPageNo} totalPages={totalPages}/>
+      
     </div>
   );
 }
