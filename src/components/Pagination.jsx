@@ -1,11 +1,12 @@
 import React from "react";
 import "./main.css";
 
-function Pagination({ pageNext, pagePrev, pageNo, setPageNo, totalPages=500 }) {
+function Pagination({ pageNo, setPageNo, totalPages=500 }) {
+  if(totalPages == 1) return(<></>)
   return (
-    <div className="text-white flex gap-5 items-center justify-center text-3xlpy-4">
+    <div className="text-white flex gap-5 items-center justify-center text-3xlpy-4 mt-5">
       <button
-        onClick={pagePrev}
+        onClick={()=>{pageNo > 1 && setPageNo(pageNo - 1);}}
         className="w-14 h-14 flex items-center justify-center border-2 border-white rounded-full 
                transition duration-200 active:scale-75 hover:bg-white hover:text-blue-900 text-3xl font-bold"
       >
@@ -25,7 +26,7 @@ function Pagination({ pageNext, pagePrev, pageNo, setPageNo, totalPages=500 }) {
       />
   
       <button
-        onClick={pageNext}
+        onClick={()=>{setPageNo(pageNo + 1)}}
         className="w-14 h-14 flex items-center justify-center border-2 border-white rounded-full 
                transition duration-200 active:scale-75 hover:bg-white hover:text-blue-900 text-3xl font-bold"
       >

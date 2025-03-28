@@ -12,7 +12,6 @@ function SearchPage() {
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(500);
-
   const pageNext = () => pageNo < totalPages && setPageNo(pageNo + 1);
   const pagePrev = () => pageNo > 1 && setPageNo(pageNo - 1);
 

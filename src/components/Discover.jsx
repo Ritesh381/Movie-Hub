@@ -30,10 +30,8 @@ function Discover() {
     return Number(localStorage.getItem("pageNoDiscover")) || 1;
   });
 
-  const pageNext = () => pageNo<500 && setPageNo(pageNo + 1);
-  const pagePrev = () => pageNo > 1 && setPageNo(pageNo - 1);
-
   useEffect(() => {
+    setAdult(false)
     axios
       .get(
         `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=${adult}&language=en-US&page=${pageNo}&sort_by=${selectedSorting}`
@@ -99,8 +97,6 @@ function Discover() {
       )}
 
       <Pagination
-        pageNext={pageNext}
-        pagePrev={pagePrev}
         pageNo={pageNo}
         setPageNo={setPageNo}
       />

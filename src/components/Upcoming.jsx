@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
+import HorizontalView from "./HorizontalView";
 import axios from "axios";
 import { API_KEY } from "../assets/key";
-import HorizontalView from "./HorizontalView";
 
-function Trending() {
+function Upcoming() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=2`
       )
       .then((response) => {
         setMovies(response.data.results);
@@ -21,12 +21,12 @@ function Trending() {
   return (
     <div className="flex flex-col items-center w-full px-4 sm:px-6 md:px-8">
       <h1 className="text-2xl sm:text-3xl font-bold text-orange-300 my-4 sm:my-5 text-center">
-        Trending these days
+        Upcoming Movies
       </h1>
 
-      <HorizontalView movies={movies}/>
+      <HorizontalView movies={movies} />
     </div>
   );
 }
 
-export default Trending;
+export default Upcoming;
