@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import genreData from "../assets/genre.json";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
@@ -13,23 +12,25 @@ import { API_KEY } from "../assets/key";
 function Info() {
   const { watchList, setWatchList } = useContext(MyContext);
   const location = useLocation();
-  const movie = location.state?.movie;
+  // const movie = location.state?.movie;
+  const [movie, setMovie] = useState({})
   const [isLiked, setIsLiked] = useState(false);
-  const [additional, setAdditional] = useState({});
 
   useEffect(() => {
+    let movID = new URLSearchParams(location.search).get("id");
+
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${movID}?api_key=${API_KEY}&language=en-US`
       )
       .then((res) => {
         console.log(res.data);
-        setAdditional(res.data);
+        setMovie(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [movie]);
+  }, [location.search]);
 
   useEffect(() => {
     if (!movie) return;
@@ -106,9 +107,9 @@ function Info() {
             >
               🎬 Watch Trailer
             </a>
-            {additional.homepage && (
+            {movie.homepage && (
               <a
-                href={additional.homepage}
+                href={movie.homepage}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
@@ -116,9 +117,9 @@ function Info() {
                 🏠 Home Page
               </a>
             )}
-            {additional.imdb_id && (
+            {movie.imdb_id && (
               <a
-                href={`https://www.imdb.com/title/${additional.imdb_id}`}
+                href={`https://www.imdb.com/title/${movie.imdb_id}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
@@ -146,10 +147,10 @@ function Info() {
         </p>
 
         <p className="text-lg">
-          {movie.genre_ids.length > 0 && (
+          {movie.genres && movie.genres.length > 0 && (
             <span>
               🎭 <span className="font-semibold">Genre: </span>
-              {movie.genre_ids.map((id) => genreData[id]).join(", ")}
+              {movie.genres.map((id) => id.name).join(", ")}
             </span>
           )}
         </p>
@@ -166,37 +167,37 @@ function Info() {
         </p>
 
         <p className="text-lg">
-          {additional.budget > 0 && (
+          {movie.budget > 0 && (
             <span>
               <span className="font-semibold">💸 Budget: </span>$
-              {additional.budget / 1000000} M
+              {movie.budget / 1000000} M
             </span>
           )}
         </p>
 
         <p className="text-lg">
-          {additional.origin_country && (
+          {movie.origin_country && (
             <span>
               <span className="font-semibold">🌎 Origin country: </span>
-              {additional.origin_country.map((country) => country).join(", ")}
+              {movie.origin_country.map((country) => country).join(", ")}
             </span>
           )}
         </p>
 
         <p className="text-lg">
-          {additional.revenue > 0 && (
+          {movie.revenue > 0 && (
             <span>
               <span className="font-semibold">💰 Revenue: </span>$
-              {(additional.revenue / 1000000).toFixed(2)} M
+              {(movie.revenue / 1000000).toFixed(2)} M
             </span>
           )}
         </p>
 
         <p className="text-lg">
-          {additional.runtime > 0 && (
+          {movie.runtime > 0 && (
             <span>
               <span className="font-semibold">⏳ Runtime: </span>
-              {additional.runtime} minutes
+              {movie.runtime} minutes
             </span>
           )}
         </p>
@@ -215,7 +216,7 @@ function Info() {
           {movie.adult ? "Yes" : "No"}
         </p>
       </div>
-      <Recomendation movID={movie.id} />
+      <Recomendation />
     </div>
   );
 }

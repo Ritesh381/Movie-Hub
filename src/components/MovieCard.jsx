@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MyContext } from "./Context/WatchListContext";
-import { Star, Info, Heart } from 'lucide-react';
+import { Info, Heart } from 'lucide-react';
 
 function MovieCard({ movieObj, className = '' }) {
   const { watchList, setWatchList } = useContext(MyContext);
@@ -59,8 +59,8 @@ function MovieCard({ movieObj, className = '' }) {
             </span>
           </div>
 
-          <Link 
-            to="/info" 
+          <Link
+            to={`/info?id=${movieObj.id}`}
             state={{ movie: movieObj }}
             className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
               hover:bg-black/70 flex items-center justify-center"

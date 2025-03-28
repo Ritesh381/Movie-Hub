@@ -4,13 +4,14 @@ import { API_KEY } from "../assets/key";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 
-function Recomendation({ movID }) {
+function Recomendation() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
+  useEffect(() => { 
+    let movID = new URLSearchParams(location.search).get("id");
     setLoading(true);
     axios
       .get(
@@ -20,10 +21,10 @@ function Recomendation({ movID }) {
         setMovies(response.data.results);
         setLoading(false);
         setTotalPages(response.data.total_pages);
-        console.log(response);
+        console.log(response.data.results);
       })
       .catch((error) => console.log("Error: " + error));
-  }, [movID, pageNo]);
+  }, [pageNo, location.search]);
 
   if (movies.length == 0) return <></>;
   return (

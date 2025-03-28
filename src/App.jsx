@@ -9,6 +9,8 @@ import Info from "./components/Info";
 import TrendingPage from "./components/TrendingPage";
 import SearchPage from "./components/SearchPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UpcomingPage from "./components/UpcomingPage";
+import TopRatedPage from "./components/TopRatedPage";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/info" element={<Info />}></Route>
           <Route path="/trending" element={<TrendingPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/upcoming" element={<UpcomingPage />}></Route>
+          <Route path="/top-rated" element={<TopRatedPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>

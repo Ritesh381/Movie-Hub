@@ -22,7 +22,9 @@ function Discover() {
     "vote_count.desc",
   ];
 
-  const [selectedSorting, setSelectedSorting] = useState("vote_count.desc");
+  const [selectedSorting, setSelectedSorting] = useState(()=>{
+    return localStorage.getItem("selectedSortingDiscover") || "vote_count.desc";
+  });
   const [adult, setAdult] = useState(false);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,6 +45,7 @@ function Discover() {
       })
       .catch((error) => console.log("Error: " + error));
     localStorage.setItem("pageNoDiscover", pageNo);
+    localStorage.setItem("selectedSortingDiscover", selectedSorting)
   }, [pageNo, selectedSorting, adult]);
   return (
     <div className="container mx-auto px-4 py-6">

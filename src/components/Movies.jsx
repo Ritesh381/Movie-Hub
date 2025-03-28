@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import "./main.css";
 import Discover from "./Discover";
 import Upcoming from "./Upcoming";
+import TopRated from "./TopRated";
 
 function Movies() {
   return (
@@ -13,7 +14,10 @@ function Movies() {
       <br />
       <Upcoming />
       <br />
+      <TopRated />
+      <br />
       <Discover />
+      <br />
     </div>
   );
 }

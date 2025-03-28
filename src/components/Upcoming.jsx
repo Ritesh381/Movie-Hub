@@ -20,11 +20,11 @@ function Upcoming() {
 
   return (
     <div className="flex flex-col items-center w-full px-4 sm:px-6 md:px-8">
-      <h1 className="text-2xl sm:text-3xl font-bold text-orange-300 my-4 sm:my-5 text-center">
-        Upcoming Movies
+      <h1 className="text-2xl sm:text-3xl font-bold text-orange-300 my-4 sm:my-5 self-start">
+        Upcoming
       </h1>
 
-      <HorizontalView movies={movies} />
+      <HorizontalView movies={movies} showMorePage={"upcoming"}/>
     </div>
   );
 }

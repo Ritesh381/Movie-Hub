@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
-function HorizontalView({ movies }) {
-  const [loading, setLoading] = useState(true)
-  useEffect(()=>{
-    if(movies.length > 0){
-      setLoading(false)
+function HorizontalView({ movies, showMorePage }) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (movies.length > 0) {
+      setLoading(false);
     }
-  },[movies])
+  }, [movies]);
   return (
     <div className="w-full overflow-x-auto">
-      <div className="flex space-x-4 sm:space-x-6 pb-4">
+      <div className="flex space-x-4 sm:space-x-6 pb-4 mt-5 items-center">
         {loading ? (
           <div className="text-white text-lg w-full text-center">
             Loading...
@@ -42,11 +42,11 @@ function HorizontalView({ movies }) {
             >
               <p className="text-sm sm:text-base">Show More</p>
               <Link
-                to={"/trending"}
+                to={`/${showMorePage}`}
                 className="w-10 h-10 sm:w-14 sm:h-14 
-                  flex items-center justify-center 
+                  flex items-center justify-center
                   border-2 border-white rounded-full 
-                  transition duration-200 
+                  transition duration-200
                   active:scale-75 
                   hover:bg-white 
                   hover:text-blue-900"
