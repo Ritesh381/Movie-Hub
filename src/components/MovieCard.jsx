@@ -60,7 +60,6 @@ function MovieCard({ movieObj, height=60, width=40}) {
 
           <Link
             to={`/info?id=${movieObj.id}`}
-            state={{ movie: movieObj }}
             className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
               hover:bg-black/70 flex items-center justify-center"
           >

@@ -70,7 +70,7 @@ function WatchListDetail({ searchField, activeGenre }) {
                     </td>
                     {/* Movie Name */}
                     <td className="p-1 sm:p-2 md:p-3 border border-amber-400 font-semibold text-xs sm:text-lg md:text-2xl">
-                      <Link to="/info" state={{ movie: mov }}>
+                      <Link to={`/info?id=${mov.id}`}>
                         {mov.title}
                       </Link>
                     </td>

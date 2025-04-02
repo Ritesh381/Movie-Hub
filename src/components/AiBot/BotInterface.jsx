@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ChatbotIcon from "../../assets/chatbot";
 import Message from "./Message";
 import { InitialPrompt } from "../../assets/chatbot";
 import { GoogleGenAI } from "@google/genai";
 import { GEMINI_API_KEY } from "../../assets/key";
+import { MyBotContext } from "../Context/BotMessageContext";
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 function BotInterface({ height = 700, setActive }) {
   const [message, setMessage] = useState("");
-  const [messageHistory, setMessageHistory] = useState([]);
+  const {messageHistory, setMessageHistory} = useContext(MyBotContext)
 
   useEffect(() => {
-    // Initial bot message
     const obj = {
       user: "Popcorn Pilot",
       msg: {
         movieIds: [],
         message:
-          "Hey there! 🍿 I'm Popcorn Pilot, your movie navigator.\nAsk me anything about movies, from recommendations to details!\nJust a heads-up, even pilots hit turbulence sometimes, so bear with me if I encounter a few bumps along the way 😵‍💫. \n🎬✨ What movie adventure are we embarking on today?",
+          "Hey there! 🍿 I'm Popcorn Pilot, your movie navigator.\nAsk me anything about movies, from recommendations to details!\nJust a heads-up, even pilots hit turbulence sometimes, so bear with me if I encounter a few bumps along the way 😵‍💫\n🎬✨ What movie adventure are we embarking on today?",
       },
     };
-    setMessageHistory([obj]);
+    if(messageHistory.length == 0) setMessageHistory([obj]);
   }, []);
 
   const fetchData = async (userPrompt) => {

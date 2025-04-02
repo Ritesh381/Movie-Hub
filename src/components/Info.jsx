@@ -49,6 +49,7 @@ function Info() {
   function liked() {
     if (isLiked) {
       // remove from watchList
+      console.log(watchList)
       const updatedList = watchList.filter((mov) => mov.id !== movie.id);
       setWatchList(updatedList);
       localStorage.setItem("watchList", JSON.stringify(updatedList));
