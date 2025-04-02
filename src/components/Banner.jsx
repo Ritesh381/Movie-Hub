@@ -30,6 +30,7 @@ function Banner() {
           className="w-full h-48 md:h-64 lg:h-80 xl:h-[70vh] object-cover"
         />
       </div>
+      
       {/* Searching area */}
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4">
         <div className="max-w-xl mx-auto text-center">

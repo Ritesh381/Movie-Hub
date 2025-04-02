@@ -1,0 +1,8 @@
+Implement the banner feature
+Add authentication system
+Add a searchBar on the navBar so that if the user is on other pages he still can use search 
+Add TV Series -> Movies -> TV Series switch button 
+Add environment variables so that api key stays hidden
+A AI Bot in right bottom to chat with
+    - Like Recommend me a movie in a genre 
+    - The prompt will be we will ask AI API to return some ID of movies from tmdb 

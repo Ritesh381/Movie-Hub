@@ -17,7 +17,11 @@ function NavBar() {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <img src={logo} alt="Logo" className="h-10 w-10 md:h-14 md:w-14 lg:h-16 lg:w-16" />
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-10 w-10 md:h-14 md:w-14 lg:h-16 lg:w-16"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -25,7 +29,10 @@ function NavBar() {
             <Link to="/" className="hover:text-white transition-colors">
               Home
             </Link>
-            <Link to="/watchlist" className="hover:text-white transition-colors">
+            <Link
+              to="/watchlist"
+              className="hover:text-white transition-colors"
+            >
               WatchList
             </Link>
             <Link to="/trending" className="hover:text-white transition-colors">
@@ -54,18 +61,18 @@ function NavBar() {
         <div className="absolute top-full left-0 w-full bg-orange-300 md:hidden z-50">
           <div className="flex flex-col items-center py-4 space-y-4">
             <Link
-              to="/"
-              className="w-full text-center py-2 hover:bg-orange-400"
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-            <Link
               to="/watchlist"
               className="w-full text-center py-2 hover:bg-orange-400"
               onClick={toggleMenu}
             >
               WatchList
+            </Link>
+            <Link
+              to="/"
+              className="w-full text-center py-2 hover:bg-orange-400"
+              onClick={toggleMenu}
+            >
+              Home
             </Link>
             <Link
               to="/trending"

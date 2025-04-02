@@ -11,6 +11,7 @@ import SearchPage from "./components/SearchPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UpcomingPage from "./components/UpcomingPage";
 import TopRatedPage from "./components/TopRatedPage";
+import AiBot from "./components/AiBot/AiBot";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/upcoming" element={<UpcomingPage />}></Route>
           <Route path="/top-rated" element={<TopRatedPage />}></Route>
         </Routes>
+        <AiBot/>
       </BrowserRouter>
     </>
   );
