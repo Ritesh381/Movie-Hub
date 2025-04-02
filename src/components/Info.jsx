@@ -12,7 +12,7 @@ import { API_KEY } from "../assets/key";
 function Info() {
   const { watchList, setWatchList } = useContext(MyContext);
   const location = useLocation();
-  // const movie = location.state?.movie;
+  const tempMov = location.state?.movie;
   const [movie, setMovie] = useState({})
   const [isLiked, setIsLiked] = useState(false);
 
@@ -55,7 +55,7 @@ function Info() {
       localStorage.setItem("watchList", JSON.stringify(updatedList));
     } else {
       // add to watchList
-      const updatedList = [...watchList, movie];
+      const updatedList = [...watchList, tempMov];
       setWatchList(updatedList);
       localStorage.setItem("watchList", JSON.stringify(updatedList));
     }
