@@ -23,7 +23,6 @@ function NavBar() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center font-bold space-x-4 lg:space-x-6 ml-6 lg:ml-10">
             <Link to="/" className="hover:text-white transition-colors">
               Home
@@ -37,12 +36,18 @@ function NavBar() {
             <Link to="/trending" className="hover:text-white transition-colors">
               Trending
             </Link>
-            <Link
+            {/* <Link
               to="/recommend"
               className="flex items-center space-x-1 hover:text-white transition-colors"
             >
               <span className="text-violet-700 text-sm">AI</span>
               <span>Recommendation</span>
+            </Link> */}
+            <Link
+              to={"/upcoming"}
+              className="hover:text-white transition-colors"
+            >
+              Upcoming
             </Link>
           </div>
         </div>

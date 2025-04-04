@@ -11,7 +11,7 @@ function AiBot() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5">
+    <div className="fixed bottom-5 right-5 z-50">
       {!active ? (
         <button
           className="flex w-20 h-20 justify-center items-center"
