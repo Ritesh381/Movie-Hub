@@ -65,6 +65,7 @@ function BotInterface({ height = 700, setActive }) {
           },
         },
       ]);
+      console.log("Error: ", error)
     } finally {
       setIsLoading(false);
     }

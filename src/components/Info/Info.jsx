@@ -12,7 +12,7 @@ import { API_KEY } from "../../assets/key";
 function Info() {
   const { watchList, setWatchList } = useContext(MyContext);
   const location = useLocation();
-  const [movie, setMovie] = useState({})
+  const [movie, setMovie] = useState({});
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function Info() {
   function liked() {
     if (isLiked) {
       // remove from watchList
-      console.log(watchList)
+      console.log(watchList);
       const updatedList = watchList.filter((mov) => mov.id !== movie.id);
       setWatchList(updatedList);
       localStorage.setItem("watchList", JSON.stringify(updatedList));
@@ -95,15 +95,24 @@ function Info() {
           <p className="text-gray-400 text-lg">{movie.overview}</p>
 
           <div className="flex gap-4 mt-4">
-          {movie.vote_average>0 && 
-            <p className="bg-yellow-600 text-black px-3 py-1 rounded-full text-sm font-bold">
-              ⭐ {movie.vote_average.toFixed(1)}
-            </p>}
+            <div className="flex items-center gap-2">
+              {movie.vote_average > 0 && (
+                <div className="flex flex-col items-center">
+                  <p className="bg-yellow-600 text-black px-3 py-1 rounded-full text-sm font-bold">
+                    ⭐ {movie.vote_average.toFixed(1)}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    ({movie.vote_count.toLocaleString()} votes)
+                  </p>
+                </div>
+              )}
+            </div>
+
             <a
               href={`https://www.youtube.com/results?search_query=${movie.title} trailer`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+              className="flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition min-w-[130px]"
             >
               🎬 Watch Trailer
             </a>
@@ -112,7 +121,7 @@ function Info() {
                 href={movie.homepage}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+                className="flex items-center justify-center bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
               >
                 🏠 Home Page
               </a>
@@ -122,15 +131,38 @@ function Info() {
                 href={`https://www.imdb.com/title/${movie.imdb_id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
+                className="flex items-center justify-center bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold hover:bg-blue-800 transition"
               >
                 <FontAwesomeIcon
                   icon={faImdb}
-                  className="text-black bg-amber-400 mr-2"
+                  className="flex items-center justify-center text-black bg-amber-400 mr-2"
                 />
                 IMDB
               </a>
             )}
+
+            {/* Watch movie at attackers tv */}
+            <a
+              href="#"
+              className="flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition min-w-[130px]"
+              onClick={(e) => {
+                e.preventDefault(); // Prevents immediate navigation
+                const userConfirmed = window.confirm(
+                  "⚠️ This will take you to an external website (AttackerTV). The movie might or might not be available there, but it's free to watch. Do you want to continue? If the link dosen't work use VPN" 
+                );
+                if (userConfirmed) {
+                  window.open(
+                    `https://attackertv.so/search/${movie.title.replace(
+                      /\s+/g,
+                      "-"
+                    )}`,
+                    "_blank"
+                  );
+                }
+              }}
+            >
+              🎬 Watch Movie
+            </a>
           </div>
         </div>
       </div>
