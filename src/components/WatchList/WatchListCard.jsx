@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import genreData from "../../assets/genre.json";
 import { MyContext } from "../Context/WatchListContext";
-import MovieCard from "../MovieCard";
+import MovieCard from "../commonComponents/MovieCard";
 
 function WatchListCard({ searchField, activeGenre }) {
   const { watchList } = useContext(MyContext);

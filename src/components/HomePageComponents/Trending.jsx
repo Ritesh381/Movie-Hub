@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_KEY } from "../assets/key";
-import HorizontalView from "./HorizontalView";
+import { API_KEY } from "../../assets/key";
+import HorizontalView from "../commonComponents/HorizontalView";
 
 function Trending() {
   const [movies, setMovies] = useState([]);

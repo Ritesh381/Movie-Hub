@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { API_KEY } from "../assets/key";
-import VerticalView from "./VerticalView";
-import Pagination from "./Pagination";
+import { API_KEY } from "../../assets/key";
+import VerticalView from "../commonComponents/VerticalView";
+import Pagination from "../commonComponents/Pagination";
 
 function Recomendation() {
   const [movies, setMovies] = useState([]);

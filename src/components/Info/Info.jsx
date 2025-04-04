@@ -5,9 +5,9 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import Recomendation from "./Recomendation";
-import { MyContext } from "./Context/WatchListContext";
+import { MyContext } from "../Context/WatchListContext";
 import axios from "axios";
-import { API_KEY } from "../assets/key";
+import { API_KEY } from "../../assets/key";
 
 function Info() {
   const { watchList, setWatchList } = useContext(MyContext);

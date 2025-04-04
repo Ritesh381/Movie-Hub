@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./main.css";
 import logo from "../assets/movieHubLogo.png";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";

@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { API_KEY } from "../assets/key";
-import Pagination from "./Pagination";
-import MovieCard from "./MovieCard";
+import { API_KEY } from "../../assets/key";
+import Pagination from "../commonComponents/Pagination";
+import MovieCard from "../commonComponents/MovieCard";
 
 function Discover() {
   const sortingOptions = [

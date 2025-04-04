@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Pagination from "./Pagination";
-import VerticalView from "./VerticalView";
-import { API_KEY } from "../assets/key";
+import Pagination from "../commonComponents/Pagination";
+import VerticalView from "../commonComponents/VerticalView";
+import { API_KEY } from "../../assets/key";
 
 
 function UpcomingPage() {

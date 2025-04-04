@@ -87,15 +87,26 @@ function BotInterface({ height = 700, setActive }) {
       className={`bg-white w-[500px] rounded-2xl shadow-lg p-4 flex flex-col`}
       style={{ height: `${height}px` }}
     >
-      <div className="flex justify-center items-center p-1 h-15 w-15">
-        <ChatbotIcon />
+      <div className="flex justify-between">
+        <div className="flex justify-center items-center p-1 h-15 w-15">
+          <ChatbotIcon />
+        </div>
+
+        <img
+          src="https://media.tenor.com/NGFeo-Nn7WQAAAAi/milk-and-mocha-popcorn.gif"
+          alt="watchingTV"
+          className="absolute h-20 top-0 left-1/2 -translate-x-1/2"
+        />
+
+        <div>
+          <button
+            className="text-2xl font-bold hover:scale-150 duration-300 hover:text-red-600"
+            onClick={() => setActive(false)}
+          >
+            X
+          </button>
+        </div>
       </div>
-      <button
-        className="absolute top-2 right-5 text-2xl font-bold"
-        onClick={() => setActive(false)}
-      >
-        X
-      </button>
 
       {/* Messages Area */}
       <div

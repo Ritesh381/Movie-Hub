@@ -1,10 +1,9 @@
 import React from "react";
-import Trending from "./Trending";
-import Banner from "./Banner";
-import "./main.css";
-import Discover from "./Discover";
-import Upcoming from "./Upcoming";
-import TopRated from "./TopRated";
+import Trending from "./HomePageComponents/Trending";
+import Banner from "./HomePageComponents/Banner";
+import Discover from "./HomePageComponents/Discover";
+import Upcoming from "./HomePageComponents/Upcoming";
+import TopRated from "./HomePageComponents/TopRated";
 
 function Movies() {
   return (

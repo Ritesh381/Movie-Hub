@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { API_KEY } from "../assets/key";
 import axios from "axios";
-import VerticalView from "./VerticalView";
-import Pagination from "./Pagination";
+import VerticalView from "./commonComponents/VerticalView";
+import Pagination from "./commonComponents/Pagination";
 
 function SearchPage() {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ function SearchPage() {
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(500);
+  const [original, setOriginal] = useState("");
 
   const handelSearch = () => {
     if (searchQuery.trim()) {
@@ -30,6 +31,7 @@ function SearchPage() {
   useEffect(() => {
     let que = new URLSearchParams(location.search).get("q");
     setSearchQuery(que);
+    setOriginal(que);
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${que}&include_adult=false&language=en-US&page=${pageNo}'`
@@ -61,7 +63,7 @@ function SearchPage() {
       </div>
       {movies.length == 0 ? (
         <p className="text-4xl text-white self-start ml-5">
-          No results found for: {searchQuery}
+          No results found for: {original}
         </p>
       ) : (
         <div className="m-6">

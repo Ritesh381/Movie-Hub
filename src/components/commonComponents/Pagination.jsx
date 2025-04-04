@@ -1,5 +1,4 @@
 import React from "react";
-import "./main.css";
 
 function Pagination({ pageNo, setPageNo, totalPages=500 }) {
   if(totalPages == 1) return(<></>)

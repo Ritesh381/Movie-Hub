@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { MyContext } from "./Context/WatchListContext";
-import { Info, Heart } from 'lucide-react';
+import { MyContext } from "../Context/WatchListContext";
+import { Info, Heart } from "lucide-react";
 
-function MovieCard({ movieObj, height=60, width=40}) {
+function MovieCard({ movieObj, height = 60, width = 40 }) {
   const { watchList, setWatchList } = useContext(MyContext);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -16,16 +16,18 @@ function MovieCard({ movieObj, height=60, width=40}) {
     const updatedList = isLiked
       ? watchList.filter((movie) => movie.id !== movieObj.id)
       : [...watchList, movieObj];
-    
+
     setWatchList(updatedList);
     localStorage.setItem("watchList", JSON.stringify(updatedList));
     setIsLiked(!isLiked);
   }
 
   return (
-    <div className={`relative flex-shrink-0 w-${width} sm:w-48 md:w-56 h-${height} sm:h-72 md:h-80 
+    <div
+      className={`relative flex-shrink-0 w-${width} sm:w-48 md:w-56 h-${height} sm:h-72 md:h-80 
       rounded-lg overflow-hidden shadow-lg 
-      hover:scale-105 duration-300 group`}>
+      hover:scale-105 duration-300 group`}
+    >
       {movieObj.poster_path || movieObj.backdrop_path ? (
         <img
           src={`https://image.tmdb.org/t/p/original/${
@@ -43,18 +45,25 @@ function MovieCard({ movieObj, height=60, width=40}) {
       )}
 
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex flex-col justify-end">
-        <div className="absolute bottom-0 w-full bg-black/70 text-white text-center 
-          text-xs sm:text-sm md:text-base p-1 sm:p-2">
-          {movieObj.title.length > 20 
-            ? `${movieObj.title.slice(0, 20)}...` 
-            : movieObj.title}
-        </div>
+        <Link to={`/info?id=${movieObj.id}`} state={{ movie: movieObj }}>
+          <div
+            className="absolute bottom-0 w-full bg-black/70 text-white text-center 
+          text-xs sm:text-sm md:text-base p-1 sm:p-2 hover:bg-black/90 hover:text-blue-400"
+          >
+            {movieObj.title.length > 20
+              ? `${movieObj.title.slice(0, 20)}...`
+              : movieObj.title}
+          </div>
+        </Link>
 
         <div className="absolute top-2 right-2 flex gap-2 space-x-1">
-          <div className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
-            hover:bg-black/70 flex items-center">
+          <div
+            className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
+            hover:bg-black/70 flex items-center"
+          >
             <span className="text-xs sm:text-sm">
-            ⭐ {movieObj.vote_average ? movieObj.vote_average.toFixed(1) : "N/A"}
+              ⭐{" "}
+              {movieObj.vote_average ? movieObj.vote_average.toFixed(1) : "N/A"}
             </span>
           </div>
 
@@ -72,9 +81,9 @@ function MovieCard({ movieObj, height=60, width=40}) {
               hover:bg-black/70 flex items-center justify-center"
             onClick={liked}
           >
-            <Heart 
+            <Heart
               className={`w-3 h-3 sm:w-4 sm:h-4 
-                ${isLiked ? 'fill-red-600' : 'fill-transparent'}`} 
+                ${isLiked ? "fill-red-600" : "fill-transparent"}`}
               strokeWidth={1.5}
             />
           </button>

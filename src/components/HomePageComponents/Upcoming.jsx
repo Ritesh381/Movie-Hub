@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import HorizontalView from "./HorizontalView";
+import HorizontalView from "../commonComponents/HorizontalView";
 import axios from "axios";
-import { API_KEY } from "../assets/key";
+import { API_KEY } from "../../assets/key";
 
 function Upcoming() {
   const [movies, setMovies] = useState([]);

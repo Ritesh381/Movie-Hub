@@ -1,16 +1,16 @@
 import "./App.css";
-import Login from "./components/Login";
+import Login from "./components/Authentication/Login";
 import MovieRecommendation from "./components/MovieRecommendation";
 import Movies from "./components/Movies";
 import NavBar from "./components/NavBar";
-import Signup from "./components/Signup";
+import Signup from "./components/Authentication/Signup";
 import WatchList from "./components/WatchList/WatchList";
-import Info from "./components/Info";
-import TrendingPage from "./components/TrendingPage";
+import Info from "./components/Info/Info";
+import TrendingPage from "./components/HomePageComponents/TrendingPage";
 import SearchPage from "./components/SearchPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import UpcomingPage from "./components/UpcomingPage";
-import TopRatedPage from "./components/TopRatedPage";
+import UpcomingPage from "./components/HomePageComponents/UpcomingPage";
+import TopRatedPage from "./components/HomePageComponents/TopRatedPage";
 import AiBot from "./components/AiBot/AiBot";
 
 function App() {

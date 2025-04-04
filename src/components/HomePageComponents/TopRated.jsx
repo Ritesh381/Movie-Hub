@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import HorizontalView from './HorizontalView'
-import { API_KEY } from '../assets/key';
+import HorizontalView from '../commonComponents/HorizontalView'
+import { API_KEY } from '../../assets/key';
 import axios from 'axios';
 function TopRated() {
     const [movies, setMovies] = useState([]);
