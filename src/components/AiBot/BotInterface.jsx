@@ -18,7 +18,7 @@ function BotInterface({ height = 700, setActive }) {
     const obj = {
       user: "Popcorn Pilot",
       msg: {
-        movieIds: [],
+        movieNames: [],
         message:
           "Hey there! 🍿 I'm Popcorn Pilot, your movie navigator.\nAsk me anything about movies, from recommendations to details!\nJust a heads-up, even pilots hit turbulence sometimes, so bear with me if I encounter a few bumps along the way 😵‍💫\n🎬✨ What movie adventure are we embarking on today?",
       },
@@ -28,10 +28,12 @@ function BotInterface({ height = 700, setActive }) {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
     }
   }, [messageHistory]);
 
+  // Calling Gemini to get the bot running
   const fetchData = async (userPrompt) => {
     setIsLoading(true);
     try {
@@ -39,6 +41,7 @@ function BotInterface({ height = 700, setActive }) {
         model: "gemini-2.0-flash",
         contents: InitialPrompt + userPrompt,
       });
+      console.log(result)
 
       const responseJson = JSON.parse(
         result.text.replace(/```json|```/g, "").trim()
@@ -49,7 +52,7 @@ function BotInterface({ height = 700, setActive }) {
         {
           user: "Popcorn Pilot",
           msg: {
-            movieIds: responseJson.movieIds || [],
+            movieNames: responseJson.movieNames || [],
             message: responseJson.message || "I couldn't understand that!",
           },
         },
@@ -60,12 +63,12 @@ function BotInterface({ height = 700, setActive }) {
         {
           user: "Popcorn Pilot",
           msg: {
-            movieIds: [],
+            movieNames: [],
             message: "Oops! Something went wrong. Try again later.",
           },
         },
       ]);
-      console.log("Error: ", error)
+      console.log("Error: ", error);
     } finally {
       setIsLoading(false);
     }
@@ -73,7 +76,7 @@ function BotInterface({ height = 700, setActive }) {
 
   const sendMessage = () => {
     if (message.trim() === "" || isLoading) return;
-    const newMessage = { user: "user", msg: { movieIds: [], message } };
+    const newMessage = { user: "user", msg: { movieNames: [], message } };
     setMessageHistory((prev) => [...prev, newMessage]);
     fetchData(message);
     setMessage("");
@@ -111,9 +114,15 @@ function BotInterface({ height = 700, setActive }) {
         </div>
       </div>
 
-      <div className="relative rounded-xl overflow-hidden" style={{ height: `${height - 100}px` }}>
+      <div
+        className="relative rounded-xl overflow-hidden"
+        style={{ height: `${height - 100}px` }}
+      >
         <div className="absolute inset-0 bg-gray-100 opacity-30"></div>
-        <div ref={chatContainerRef} className="relative flex-grow overflow-auto p-3 h-full">
+        <div
+          ref={chatContainerRef}
+          className="relative flex-grow overflow-auto p-3 h-full"
+        >
           {messageHistory.map((msg, index) => (
             <Message key={index} msgObj={msg} />
           ))}
@@ -122,8 +131,14 @@ function BotInterface({ height = 700, setActive }) {
               <div className="bg-white p-3 rounded-lg max-w-xs">
                 <div className="flex space-x-2">
                   <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></div>
-                  <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                  <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                  <div
+                    className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
+                    style={{ animationDelay: "0.2s" }}
+                  ></div>
+                  <div
+                    className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
+                    style={{ animationDelay: "0.4s" }}
+                  ></div>
                 </div>
               </div>
             </div>
@@ -142,7 +157,9 @@ function BotInterface({ height = 700, setActive }) {
           disabled={isLoading}
         />
         <button
-          className={`ml-2 ${isLoading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"} text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl`}
+          className={`ml-2 ${
+            isLoading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+          } text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl`}
           onClick={sendMessage}
           disabled={isLoading}
         >
