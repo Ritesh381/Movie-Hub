@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ChatbotIcon from "../../assets/chatbot";
 import Message from "./Message";
 import { InitialPrompt } from "../../assets/chatbot";
@@ -12,6 +12,7 @@ function BotInterface({ height = 700, setActive }) {
   const [message, setMessage] = useState("");
   const { messageHistory, setMessageHistory } = useContext(MyBotContext);
   const [isLoading, setIsLoading] = useState(false);
+  const chatContainerRef = useRef(null);
 
   useEffect(() => {
     const obj = {
@@ -22,8 +23,14 @@ function BotInterface({ height = 700, setActive }) {
           "Hey there! 🍿 I'm Popcorn Pilot, your movie navigator.\nAsk me anything about movies, from recommendations to details!\nJust a heads-up, even pilots hit turbulence sometimes, so bear with me if I encounter a few bumps along the way 😵‍💫\n🎬✨ What movie adventure are we embarking on today?",
       },
     };
-    if (messageHistory.length == 0) setMessageHistory([obj]);
+    if (messageHistory.length === 0) setMessageHistory([obj]);
   }, []);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messageHistory]);
 
   const fetchData = async (userPrompt) => {
     setIsLoading(true);
@@ -48,7 +55,6 @@ function BotInterface({ height = 700, setActive }) {
         },
       ]);
     } catch (error) {
-      console.error("Error fetching AI response:", error);
       setMessageHistory((prev) => [
         ...prev,
         {
@@ -72,20 +78,16 @@ function BotInterface({ height = 700, setActive }) {
     setMessage("");
   };
 
-  const handleInput = (e) => {
-    setMessage(e.target.value);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      sendMessage();
-    }
-  };
-
   return (
     <div
-      className={`bg-white w-[500px] rounded-2xl shadow-lg p-4 flex flex-col`}
-      style={{ height: `${height}px` }}
+      className="bg-white w-[500px] rounded-2xl shadow-lg p-4 flex flex-col"
+      style={{
+        height: `${height}px`,
+        backgroundImage:
+          "url('https://media1.tenor.com/m/S89fWSFaFowAAAAd/colors-pattern.gif')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <div className="flex justify-between">
         <div className="flex justify-center items-center p-1 h-15 w-15">
@@ -108,53 +110,42 @@ function BotInterface({ height = 700, setActive }) {
         </div>
       </div>
 
-      {/* Messages Area */}
-      <div
-        className={`h-${
-          height - 100
-        }px bg-gray-100 flex-grow rounded-xl overflow-auto p-3`}
-      >
-        {messageHistory.map((msg, index) => (
-          <Message key={index} msgObj={msg} />
-        ))}
-        {isLoading && (
-          <div className="flex justify-start my-2">
-            <div className="bg-white p-3 rounded-lg max-w-xs">
-              <div className="flex space-x-2">
-                <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></div>
-                <div
-                  className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
-                  style={{ animationDelay: "0.2s" }}
-                ></div>
-                <div
-                  className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
-                  style={{ animationDelay: "0.4s" }}
-                ></div>
+      <div className="relative rounded-xl overflow-hidden" style={{ height: `${height - 100}px` }}>
+        <div className="absolute inset-0 bg-gray-100 opacity-30"></div>
+        <div ref={chatContainerRef} className="relative flex-grow overflow-auto p-3 h-full">
+          {messageHistory.map((msg, index) => (
+            <Message key={index} msgObj={msg} />
+          ))}
+          {isLoading && (
+            <div className="flex justify-start my-2">
+              <div className="bg-white p-3 rounded-lg max-w-xs">
+                <div className="flex space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></div>
+                  <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                  <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
-      {/* Input */}
       <div className="flex items-center mt-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500 bg-white">
         <input
           type="text"
           className="flex-grow outline-none bg-transparent"
           placeholder="Type a message..."
           value={message}
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           disabled={isLoading}
         />
         <button
-          className={`ml-2 ${
-            isLoading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
-          } text-white rounded-full w-10 h-10 flex items-center justify-center`}
+          className={`ml-2 ${isLoading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"} text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl`}
           onClick={sendMessage}
           disabled={isLoading}
         >
-          {isLoading ? "..." : "⬆️"}
+          {isLoading ? "..." : "▲"}
         </button>
       </div>
     </div>

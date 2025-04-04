@@ -23,31 +23,48 @@ function WatchListDetail({ searchField, activeGenre }) {
           <table className="w-full border-collapse border border-amber-400 text-white text-xs sm:text-sm md:text-base">
             <thead>
               <tr className="bg-amber-600">
-                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">Poster</th>
-                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">Name</th>
-                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">Genre</th>
-                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">Rating</th>
-                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">Popularity</th>
-                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">Remove</th>
+                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">
+                  Poster
+                </th>
+                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">
+                  Name
+                </th>
+                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">
+                  Genre
+                </th>
+                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">
+                  Rating
+                </th>
+                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">
+                  Popularity
+                </th>
+                <th className="p-1 sm:p-2 md:p-3 border border-amber-400">
+                  Remove
+                </th>
               </tr>
             </thead>
             <tbody>
               {watchList
                 .filter((movie) => {
-                  let x = false;
+                  let matchesGenre = false;
                   if (movie.genre_ids) {
-                    for (let id of movie.genre_ids) {
-                      if (activeGenre == "All Genre") {
-                        x = true;
-                        break;
-                      }
-                      if (genreData[id] === activeGenre) {
-                        x = true;
-                        break;
-                      }
-                    }
+                    matchesGenre =
+                      activeGenre === "All Genre" ||
+                      movie.genre_ids.some(
+                        (id) => genreData[id] === activeGenre
+                      );
+                  } else if (movie.genres) {
+                    matchesGenre =
+                      activeGenre === "All Genre" ||
+                      movie.genres.some(
+                        (genre) => genreData[genre.id] === activeGenre
+                      );
                   }
-                  return movie.title.toLowerCase().includes(searchField) && x;
+
+                  return (
+                    movie.title.toLowerCase().includes(searchField) &&
+                    matchesGenre
+                  );
                 })
                 .map((mov) => (
                   <tr
@@ -70,25 +87,35 @@ function WatchListDetail({ searchField, activeGenre }) {
                     </td>
                     {/* Movie Name */}
                     <td className="p-1 sm:p-2 md:p-3 border border-amber-400 font-semibold text-xs sm:text-lg md:text-2xl">
-                      <Link to={`/info?id=${mov.id}`}>
-                        {mov.title}
-                      </Link>
+                      <Link to={`/info?id=${mov.id}`}>{mov.title}</Link>
                     </td>
                     {/* Genre */}
                     <td className="p-1 sm:p-2 md:p-3 border border-amber-400 font-semibold text-xs sm:text-base md:text-xl">
                       <ul className="space-y-0 md:space-y-1">
-                        {mov.genre_ids.slice(0, 3).map((id) => (
-                          <li key={id}>{genreData[id] || ""}</li>
-                        ))}
-                        {mov.genre_ids.length > 3 && (
-                          <li className="text-xs text-amber-400">+{mov.genre_ids.length - 3} more</li>
+                        {(
+                          mov.genre_ids?.map((id) => genreData[id]) ||
+                          mov.genres?.map((genre) => genre.name) ||
+                          []
+                        )
+                          .slice(0, 3)
+                          .map((genre, index) => (
+                            <li key={index}>{genre || ""}</li>
+                          ))}
+
+                        {(mov.genre_ids?.length || mov.genres?.length || 0) >
+                          3 && (
+                          <li className="text-xs text-amber-400">
+                            +{(mov.genre_ids?.length || mov.genres?.length) - 3}{" "}
+                            more
+                          </li>
                         )}
                       </ul>
                     </td>
 
                     {/* Rating */}
                     <td className="p-1 sm:p-2 md:p-3 border border-amber-400 font-bold text-yellow-400">
-                      ⭐ {mov.vote_average ? mov.vote_average.toFixed(1) : "N/A"}
+                      ⭐{" "}
+                      {mov.vote_average ? mov.vote_average.toFixed(1) : "N/A"}
                     </td>
                     {/* popularity */}
                     <td className="p-1 sm:p-2 md:p-3 border border-amber-400 font-bold text-yellow-400">

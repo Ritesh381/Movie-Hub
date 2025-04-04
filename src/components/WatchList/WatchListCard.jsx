@@ -18,17 +18,17 @@ function WatchListCard({ searchField, activeGenre }) {
             .filter((movie) => {
               let matchesGenre = false;
               if (movie.genre_ids) {
-                for (let id of movie.genre_ids) {
-                  if (activeGenre === "All Genre") {
-                    matchesGenre = true;
-                    break;
-                  }
-                  if (genreData[id] === activeGenre) {
-                    matchesGenre = true;
-                    break;
-                  }
-                }
+                matchesGenre =
+                  activeGenre === "All Genre" ||
+                  movie.genre_ids.some((id) => genreData[id] === activeGenre);
+              } else if (movie.genres) {
+                matchesGenre =
+                  activeGenre === "All Genre" ||
+                  movie.genres.some(
+                    (genre) => genreData[genre.id] === activeGenre
+                  );
               }
+
               return (
                 movie.title.toLowerCase().includes(searchField) && matchesGenre
               );
