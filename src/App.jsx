@@ -4,7 +4,7 @@ import MovieRecommendation from "./components/MovieRecommendation";
 import Movies from "./components/Movies";
 import NavBar from "./components/NavBar";
 import Signup from "./components/Signup";
-import WatchList from "./components/WatchList";
+import WatchList from "./components/WatchList/WatchList";
 import Info from "./components/Info";
 import TrendingPage from "./components/TrendingPage";
 import SearchPage from "./components/SearchPage";

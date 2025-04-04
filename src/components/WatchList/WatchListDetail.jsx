@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import genreData from "../assets/genre.json";
-import { MyContext } from "./Context/WatchListContext";
+import genreData from "../../assets/genre.json";
+import { MyContext } from "../Context/WatchListContext";
 import { Link } from "react-router-dom";
 
 function WatchListDetail({ searchField, activeGenre }) {

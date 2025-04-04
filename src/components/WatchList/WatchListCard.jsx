@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import genreData from "../assets/genre.json";
-import { MyContext } from "./Context/WatchListContext";
-import MovieCard from "./MovieCard";
+import genreData from "../../assets/genre.json";
+import { MyContext } from "../Context/WatchListContext";
+import MovieCard from "../MovieCard";
 
 function WatchListCard({ searchField, activeGenre }) {
   const { watchList } = useContext(MyContext);
@@ -13,7 +13,7 @@ function WatchListCard({ searchField, activeGenre }) {
           No movies in your watchlist 😢
         </p>
       ) : (
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-5 lg:gap-7 w-full">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5 lg:gap-7 w-full">
           {watchList
             .filter((movie) => {
               let matchesGenre = false;

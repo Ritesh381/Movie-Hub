@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import genreData from "../assets/genre.json";
+import genreData from "../../assets/genre.json";
 import WatchListCard from "./WatchListCard";
 import WatchListDetail from "./WatchListDetail";
-import { MyContext } from "./Context/WatchListContext";
+import { MyContext } from "../Context/WatchListContext";
 
 function WatchList() {
   const { watchList } = useContext(MyContext);
