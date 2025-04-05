@@ -84,9 +84,12 @@ function BotInterface({ height = 700, setActive }) {
 
   return (
     <div
-      className="bg-white w-[500px] rounded-2xl shadow-lg p-4 flex flex-col"
+      className="bg-white rounded-2xl shadow-lg p-4 flex flex-col mx-auto"
       style={{
         height: `${height}px`,
+        maxHeight: "90vh",
+        width: "95%",
+        maxWidth: "500px",
         backgroundImage:
           "url('https://media1.tenor.com/m/S89fWSFaFowAAAAd/colors-pattern.gif')",
         backgroundSize: "cover",
@@ -101,7 +104,7 @@ function BotInterface({ height = 700, setActive }) {
         <img
           src="https://media.tenor.com/NGFeo-Nn7WQAAAAi/milk-and-mocha-popcorn.gif"
           alt="watchingTV"
-          className="absolute h-20 top-0 left-1/2 -translate-x-1/2"
+          className="absolute h-16 sm:h-20 top-2 sm:top-0 left-1/2 -translate-x-1/2"
         />
 
         <div>
@@ -116,7 +119,7 @@ function BotInterface({ height = 700, setActive }) {
 
       <div
         className="relative rounded-xl overflow-hidden"
-        style={{ height: `${height - 100}px` }}
+        style={{ height: `calc(${height}px - 100px)` }}
       >
         <div className="absolute inset-0 bg-gray-100 opacity-30"></div>
         <div
