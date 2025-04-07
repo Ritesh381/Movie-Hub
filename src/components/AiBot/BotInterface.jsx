@@ -41,7 +41,6 @@ function BotInterface({ height = 700, setActive }) {
         model: "gemini-2.0-flash",
         contents: InitialPrompt + userPrompt,
       });
-      console.log(result)
 
       const responseJson = JSON.parse(
         result.text.replace(/```json|```/g, "").trim()

@@ -18,7 +18,6 @@ function Recomendation() {
       .then((response) => {
         setMovies(response.data.results);
         setTotalPages(response.data.total_pages);
-        console.log(response.data.results);
       })
       .catch((error) => console.log("Error: " + error));
   // eslint-disable-next-line react-hooks/exhaustive-deps

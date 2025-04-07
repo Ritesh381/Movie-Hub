@@ -16,7 +16,6 @@ function SearchPage() {
 
   const handelSearch = () => {
     if (searchQuery.trim()) {
-      console.log(searchQuery.trim());
       let query = searchQuery.trim().replace(/\s+/g, "+");
       navigate(`/search?q=${query}`);
     }
@@ -37,7 +36,6 @@ function SearchPage() {
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${que}&include_adult=false&language=en-US&page=${pageNo}'`
       )
       .then((response) => {
-        console.log(response.data.results);
         setMovies(response.data.results);
         setTotalPages(response.data.total_pages);
       });

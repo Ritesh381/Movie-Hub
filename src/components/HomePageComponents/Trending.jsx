@@ -13,7 +13,6 @@ function Trending() {
       )
       .then((response) => {
         setMovies(response.data.results);
-        console.log(response.data.results);
       })
       .catch((error) => console.log("Error: " + error));
   }, []);

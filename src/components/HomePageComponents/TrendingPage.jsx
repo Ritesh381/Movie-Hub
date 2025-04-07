@@ -20,7 +20,6 @@ function TrendingPage() {
       .then((response) => {
         setMovies(response.data.results);
         setTotalPages(response.data.total_pages)
-        console.log(response.data.results);
       })
       .catch((error) => console.log("Error: " + error));
       localStorage.setItem("pageNo", pageNo)

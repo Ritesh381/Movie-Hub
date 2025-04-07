@@ -41,7 +41,6 @@ function Discover() {
       .then((response) => {
         setMovies(response.data.results);
         setLoading(false);
-        console.log(response.data.results);
       })
       .catch((error) => console.log("Error: " + error));
     localStorage.setItem("pageNoDiscover", pageNo);

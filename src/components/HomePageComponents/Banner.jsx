@@ -27,7 +27,6 @@ function Banner() {
 
   const handelSearch = () => {
     if (searchQuery.trim()) {
-      console.log(searchQuery.trim());
       let query = searchQuery.trim().replace(/\s+/g, "+");
       navigate(`/search?q=${query}`);
     }

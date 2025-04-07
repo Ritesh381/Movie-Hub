@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function MovieCardLite({ movieObj }) {
-  useEffect(() => {
-    console.log(movieObj);
-  }, []);
   return (
     <div
       className="relative flex-shrink-0 w-35 h-50

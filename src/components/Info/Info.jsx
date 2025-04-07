@@ -23,7 +23,6 @@ function Info() {
         `https://api.themoviedb.org/3/movie/${movID}?api_key=${API_KEY}&language=en-US`
       )
       .then((res) => {
-        console.log(res.data);
         setMovie(res.data);
       })
       .catch((err) => {
@@ -48,7 +47,6 @@ function Info() {
   function liked() {
     if (isLiked) {
       // remove from watchList
-      console.log(watchList);
       const updatedList = watchList.filter((mov) => mov.id !== movie.id);
       setWatchList(updatedList);
       localStorage.setItem("watchList", JSON.stringify(updatedList));
