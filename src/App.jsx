@@ -12,27 +12,30 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UpcomingPage from "./components/HomePageComponents/UpcomingPage";
 import TopRatedPage from "./components/HomePageComponents/TopRatedPage";
 import AiBot from "./components/AiBot/AiBot";
+import { Suspense } from "react";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <NavBar />
+      <Suspense fallback={<h1>Loading .... </h1>}>
+        <BrowserRouter>
+          <NavBar />
 
-        <Routes>
-          <Route path="/" element={<Movies />} />
-          <Route path="/watchlist" element={<WatchList />} />
-          <Route path="/recommend" element={<MovieRecommendation />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/info" element={<Info />}></Route>
-          <Route path="/trending" element={<TrendingPage />}></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
-          <Route path="/upcoming" element={<UpcomingPage />}></Route>
-          <Route path="/top-rated" element={<TopRatedPage />}></Route>
-        </Routes>
-        <AiBot/>
-      </BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Movies />} />
+            <Route path="/watchlist" element={<WatchList />} />
+            <Route path="/recommend" element={<MovieRecommendation />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/info" element={<Info />}></Route>
+            <Route path="/trending" element={<TrendingPage />}></Route>
+            <Route path="/search" element={<SearchPage />}></Route>
+            <Route path="/upcoming" element={<UpcomingPage />}></Route>
+            <Route path="/top-rated" element={<TopRatedPage />}></Route>
+          </Routes>
+          <AiBot />
+        </BrowserRouter>
+      </Suspense>
     </>
   );
 }

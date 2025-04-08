@@ -3,24 +3,22 @@ import { Link } from "react-router-dom";
 import { MyContext } from "../Context/WatchListContext";
 import { Info, Heart } from "lucide-react";
 
-function MovieCard({ movieObj, height = 60, width = 40 }) {
-  const { watchList, setWatchList } = useContext(MyContext);
+function TVCard({ movieObj, height = 60, width = 40 }) {
+  const { watchListTV, setWatchListTV } = useContext(MyContext);
   const [isLiked, setIsLiked] = useState(false);
 
-  const title = movieObj?.title || movieObj?.name || "Untitled";
-
   useEffect(() => {
-    const liked = watchList.some((mov) => movieObj.id === mov.id);
+    const liked = watchListTV.some((mov) => movieObj.id === mov.id);
     setIsLiked(liked);
-  }, [watchList, movieObj.id]);
+  }, [watchListTV, movieObj.id]);
 
   function liked() {
     const updatedList = isLiked
-      ? watchList.filter((movie) => movie.id !== movieObj.id)
-      : [...watchList, movieObj];
+      ? watchListTV.filter((movie) => movie.id !== movieObj.id)
+      : [...watchListTV, movieObj];
 
-    setWatchList(updatedList);
-    localStorage.setItem("watchList", JSON.stringify(updatedList));
+    setWatchListTV(updatedList);
+    localStorage.setItem("watchListTV", JSON.stringify(updatedList));
     setIsLiked(!isLiked);
   }
 
@@ -36,7 +34,7 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
             movieObj.poster_path || movieObj.backdrop_path
           }`}
           className="w-full h-full object-cover"
-          alt={`Poster for ${title}`}
+          alt={`Poster for ${movieObj.name}`}
         />
       ) : (
         <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
@@ -47,16 +45,16 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
       )}
 
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex flex-col justify-end">
-        <Link to={`/info?id=${movieObj.id}`}>
+        {/* <Link to={`/info?id=${movieObj.id}`}>
           <div
             className="absolute bottom-0 w-full bg-black/70 text-white text-center 
           text-xs sm:text-sm md:text-base p-1 sm:p-2 hover:bg-black/90 hover:text-blue-400"
           >
-            {title.length > 20
-              ? `${title.slice(0, 20)}...`
-              : title}
+            {movieObj.name.length > 20
+              ? `${movieObj.name.slice(0, 20)}...`
+              : movieObj.name}
           </div>
-        </Link>
+        </Link> */}
 
         <div className="absolute top-2 right-2 flex gap-2 space-x-1">
           <div
@@ -94,4 +92,4 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
   );
 }
 
-export default MovieCard;
+export default TVCard;
