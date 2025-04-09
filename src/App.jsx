@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UpcomingPage from "./components/HomePageComponents/UpcomingPage";
 import TopRatedPage from "./components/HomePageComponents/TopRatedPage";
 import AiBot from "./components/AiBot/AiBot";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/top-rated" element={<TopRatedPage />}></Route>
         </Routes>
         <AiBot />
+        <Footer />
       </BrowserRouter>
     </>
   );
