@@ -10,6 +10,7 @@ import { MySwitchContext } from "../Context/MovieTVcontext";
 import axios from "axios";
 import { API_KEY } from "../../assets/key";
 import { getFunDesc } from "./prompt";
+import InfoLoading from "./InfoLoading";
 
 function Info() {
   const { watchList, setWatchList } = useContext(MyContext);
@@ -114,9 +115,7 @@ function Info() {
 
   if (isLoading) {
     return (
-      <div className="text-white flex justify-center items-center m-9 h-64">
-        <div className="animate-pulse text-4xl">Loading...</div>
-      </div>
+      <InfoLoading/>
     );
   }
 
