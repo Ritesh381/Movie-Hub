@@ -1,9 +1,7 @@
 import React from "react";
-import { Github, Mail, Youtube, Linkedin } from "lucide-react";
+import { GitHub, Mail, YouTube, LinkedIn } from "lucide-react";
 
 function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-black text-white py-6">
       <div className="container mx-auto px-4">
@@ -45,7 +43,7 @@ function Footer() {
               className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-amber-400 hover:text-black transition-colors"
               aria-label="GitHub"
             >
-              <Github size={20} />
+              <GitHub size={20} />
             </a>
             <a
               href="mailto:prajapatiritesh381@gmail.com"
@@ -62,7 +60,7 @@ function Footer() {
               className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-amber-400 hover:text-black transition-colors"
               aria-label="YouTube"
             >
-              <Youtube size={20} />
+              <YouTube size={20} />
             </a>
             <a
               href="https://www.linkedin.com/in/ritesh-prajapati-7830582a7/"
@@ -71,7 +69,7 @@ function Footer() {
               className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-amber-400 hover:text-black transition-colors"
               aria-label="LinkedIn"
             >
-              <Linkedin size={20} />
+              <LinkedIn size={20} />
             </a>
           </div>
         </div>
