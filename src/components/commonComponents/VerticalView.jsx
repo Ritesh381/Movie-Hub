@@ -17,7 +17,7 @@ function VerticalView({ movies }) {
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6">
         {loading ? (
-          [1,2,3,4,5].map(()=><MovieCardLoading/>)
+          [1,2,3,4,5].map((i)=><MovieCardLoading key = {i}/>)
         ) : (
           movies.map((movie) => <MovieCard key={movie.id} movieObj={movie} />)
         )}

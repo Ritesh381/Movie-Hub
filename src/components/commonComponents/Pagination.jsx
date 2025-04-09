@@ -25,7 +25,7 @@ function Pagination({ pageNo, setPageNo, totalPages=500 }) {
       />
   
       <button
-        onClick={()=>{setPageNo(pageNo + 1)}}
+        onClick={()=>{pageNo<totalPages && setPageNo(pageNo + 1)}}
         className="w-14 h-14 flex items-center justify-center border-2 border-white rounded-full 
                transition duration-200 active:scale-75 hover:bg-white hover:text-blue-900 text-3xl font-bold"
       >

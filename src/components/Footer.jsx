@@ -1,5 +1,5 @@
 import React from "react";
-import { GitHub, Mail, YouTube, LinkedIn } from "lucide-react";
+import { Github, Mail, Youtube, Linkedin } from "lucide-react";
 
 function Footer() {
   return (
@@ -43,7 +43,7 @@ function Footer() {
               className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-amber-400 hover:text-black transition-colors"
               aria-label="GitHub"
             >
-              <GitHub size={20} />
+              <Github size={20} />
             </a>
             <a
               href="mailto:prajapatiritesh381@gmail.com"
@@ -60,7 +60,7 @@ function Footer() {
               className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-amber-400 hover:text-black transition-colors"
               aria-label="YouTube"
             >
-              <YouTube size={20} />
+              <Youtube size={20} />
             </a>
             <a
               href="https://www.linkedin.com/in/ritesh-prajapati-7830582a7/"
@@ -69,7 +69,7 @@ function Footer() {
               className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-amber-400 hover:text-black transition-colors"
               aria-label="LinkedIn"
             >
-              <LinkedIn size={20} />
+              <Linkedin size={20} />
             </a>
           </div>
         </div>
