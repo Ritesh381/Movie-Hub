@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useMemo } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
@@ -19,23 +19,16 @@ function Info() {
   const [isLiked, setIsLiked] = useState(false);
   const [ytLink, setytLink] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
   const [funDesc, setFunDesc] = useState("");
 
-  const title = useMemo(
-    () => movie?.title || movie?.name || "Untitled",
-    [movie]
-  );
-  const date = useMemo(
-    () => movie?.release_date || movie?.first_air_date || "No date found",
-    [movie]
-  );
+  const title = movie?.title || movie?.name || "Untitled";
+
+  const date = movie?.release_date || movie?.first_air_date || "No date found";
 
   useEffect(() => {
     const fetchMovieData = async () => {
       setIsLoading(true);
-      setError(null);
 
       try {
         const movID = new URLSearchParams(location.search).get("id");
@@ -75,7 +68,6 @@ function Info() {
         }
       } catch (err) {
         console.error("Error fetching data:", err);
-        setError("Failed to load movie information");
       } finally {
         setIsLoading(false);
       }
@@ -124,14 +116,6 @@ function Info() {
     return (
       <div className="text-white flex justify-center items-center m-9 h-64">
         <div className="animate-pulse text-4xl">Loading...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-white flex justify-center m-9 text-4xl">
-        {error} 😟
       </div>
     );
   }
