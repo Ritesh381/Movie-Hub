@@ -2,6 +2,7 @@ import MovieCard from "./MovieCard";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import MovieCardLoading from "./MovieCardLoading";
 
 function HorizontalView({ movies, showMorePage }) {
   const [loading, setLoading] = useState(true);
@@ -14,9 +15,7 @@ function HorizontalView({ movies, showMorePage }) {
     <div className="w-full overflow-x-auto">
       <div className="flex space-x-4 sm:space-x-6 pb-4 mt-5 items-center">
         {loading ? (
-          <div className="text-white text-lg w-full text-center">
-            Loading...
-          </div>
+          [1,2,3,4,5].map(()=><MovieCardLoading/>)
         ) : (
           <>
             {movies.map((movie) => (

@@ -5,8 +5,7 @@ Summary video link in info
 Change pointer on some buttons to make it more user friendly
 In vertical component add a button > which scrolls towards right side
 Light Dark Mode toggle
-Search Bar in Nav Bar
-
+The Info takes too much time optimize it
 
 
 Differences found in tv and Movies

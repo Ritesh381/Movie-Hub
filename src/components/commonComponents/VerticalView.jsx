@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
+import MovieCardLoading from "./MovieCardLoading";
 
 function VerticalView({ movies }) {
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ function VerticalView({ movies }) {
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6">
         {loading ? (
-          <div className="text-white text-lg">Loading...</div>
+          [1,2,3,4,5].map(()=><MovieCardLoading/>)
         ) : (
           movies.map((movie) => <MovieCard key={movie.id} movieObj={movie} />)
         )}
