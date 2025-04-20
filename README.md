@@ -13,6 +13,7 @@ _Main Page Screenshot_
 
 - **Movie Exploration**: Browse various types of movies
 - **AI Recommendations**: "Popcorn Pilot" chatbot suggests movies based on your prompt
+- **Authentication System**: Save your watchlist to the cloud by signup and your data stays safe and portable.
 - **Watchlist Management**: Save movies to your watchlist
 - **Detailed Information**: View trailers, ratings, and other movie details
 - **Free Streaming Links**: Find where to watch movies
@@ -22,6 +23,7 @@ _Main Page Screenshot_
 
 - **Frontend**: React.js (Vite)
 - **Component Architecture**: Modular and reusable components
+- **Database**: Supabase
 - **APIs**:
   - TMDB API (The Movie Database) for movie data
   - Gemini API for AI chatbot functionality
