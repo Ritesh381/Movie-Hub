@@ -9,24 +9,38 @@ _Main Page Screenshot_
 
 👉 [https://movie-hub404.vercel.app/](https://movie-hub404.vercel.app/)
 
-## Features ✨
+## 🚀 Features ✨
 
-- **Movie Exploration**: Browse various types of movies
-- **AI Recommendations**: "Popcorn Pilot" chatbot suggests movies based on your prompt
-- **Authentication System**: Save your watchlist to the cloud by signup and your data stays safe and portable.
-- **Watchlist Management**: Save movies to your watchlist
-- **Detailed Information**: View trailers, ratings, and other movie details
-- **Free Streaming Links**: Find where to watch movies
-- **Search Functionality**: Easily find specific movies
+- **🎬 Movie Exploration**  
+  Browse through a wide range of movies across different genres, languages, and popularity levels. Discover trending, top-rated, upcoming, and now-playing films all in one place.
 
+- **🤖 AI Recommendations (Popcorn Pilot)**  
+  Not sure what to watch? Just ask Popcorn Pilot, your friendly AI chatbot! Describe your mood, favorite genre, or past favorites, and it will smartly suggest movies tailored just for you.  
+  Or simply ask about any movie, and it’ll describe it like a true film critic – plot, vibes, and whether it's worth your time!
+
+- **📌 Watchlist Management**  
+  Found something interesting? Save it to your personal watchlist with a single click and come back to it anytime. You can view or remove movies.
+
+- **🔐 Authentication System**  
+  Sign up or log in securely to access personalized features. Your preferences, watchlist, and settings are stored safely in the cloud, making them accessible across devices.
+
+- **📽️ Detailed Information**  
+  Get in-depth movie details including AI generated overview, revenue, runtime, release date, trailer, language etc. Everything you need to decide what to watch next.
+
+- **🎥 Free Streaming Links**  
+  Skip the searching! Find direct links to free streaming platforms so you can instantly start watching your selected movie without any hassle.
+
+- **🔍 Search Functionality**  
+  Quickly find any movie using the powerful search bar. Just type in the name or a keyword, and instantly get relevant results with matching titles.
+
+---
 ## Tech Stack 💻
 
-- **Frontend**: React.js (Vite)
-- **Component Architecture**: Modular and reusable components
-- **Database**: Supabase
-- **APIs**:
-  - TMDB API (The Movie Database) for movie data
-  - Gemini API for AI chatbot functionality
+- React.js
+- TMDB API
+- Supabase (for auth and database)
+- Gemini API (for Popcorn Pilot)
+- Tailwind CSS
 
 ## Demo Video 🎥
 
