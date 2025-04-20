@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import { AuthContext } from "../Context/Auth";
@@ -13,11 +13,14 @@ function Login() {
   const { setUsername, setAuthenticated, authenticated } =
     useContext(AuthContext);
   const navigate = useNavigate();
-  // if (authenticated) {
-  //   return (
-  //     navigate("/")
-  //   );
-  // }
+  
+  
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/");
+    }
+  }, [authenticated]);
+  
   const { watchList, setWatchList } = useContext(MyContext);
   const [wrong, setWrong] = useState(false);
   const [form, setForm] = useState({

@@ -4,20 +4,21 @@ import WatchListCard from "./WatchListCard";
 import WatchListDetail from "./WatchListDetail";
 import { MyContext } from "../Context/WatchListContext";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/Auth";
 
 function WatchList() {
-  const { watchList } = useContext(MyContext);
+  const { watchList, setWatchList } = useContext(MyContext);
   const [genres, setGenres] = useState([]);
   const [searchField, setSearchField] = useState("");
   const [activeGenre, setActiveGenre] = useState("All Genre");
   const [view, setView] = useState(() => {
     return localStorage.getItem("WatchListView") || "Detail";
   });
-
+  const { authenticated, setAuthenticated } = useContext(AuthContext);
   useEffect(() => {
     localStorage.setItem("WatchListView", view);
   }, [view]);
-
+  console.log(authenticated);
   useEffect(() => {
     const newGenres = new Set();
 
@@ -78,7 +79,24 @@ function WatchList() {
 
       {/* View Toggle Button */}
       <div className="flex justify-between mb-2 sm:mb-3 md:mb-4">
-        <p className="text-white text-left">Save your watchList by <Link to={"/login"} className="text-red-400">Signup/Login</Link></p>
+        {authenticated == false ? (
+          <p className="text-white text-left">
+            Save your watchList by{" "}
+            <Link to={"/login"} className="text-red-400">
+              Signup/Login
+            </Link>
+          </p>
+        ) : (
+          <p
+            className="text-red-400 cursor-pointer"
+            onClick={() => {
+              setAuthenticated(false);
+              setWatchList([]);
+            }}
+          >
+            Logout
+          </p>
+        )}
         <button
           className="px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-lg shadow-md bg-red-400 text-xs sm:text-sm md:text-base"
           onClick={() =>

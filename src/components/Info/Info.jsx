@@ -114,9 +114,7 @@ function Info() {
   };
 
   if (isLoading) {
-    return (
-      <InfoLoading/>
-    );
+    return <InfoLoading />;
   }
 
   if (!movie?.id) {
@@ -281,7 +279,11 @@ function Info() {
           <div className="flex items-center text-base md:text-lg">
             <span className="mr-2">🌎</span>
             <span className="font-semibold">Origin country:</span>
-            <span className="ml-2">{movie.origin_country.join(", ")}</span>
+            <span className="ml-2">
+              {new Intl.DisplayNames(["en"], { type: "region" }).of(
+                movie.origin_country[0]
+              )}
+            </span>
           </div>
         )}
 
