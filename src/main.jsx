@@ -8,13 +8,13 @@ import { MySwitchProvider } from "./components/Context/MovieTVcontext.jsx";
 import { AuthProvider } from "./components/Context/Auth.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <MyProvider>
-    <MyBotProvider>
-      <MySwitchProvider>
-        <AuthProvider>
+  <AuthProvider>
+    <MyProvider>
+      <MyBotProvider>
+        <MySwitchProvider>
           <App />
-        </AuthProvider>
-      </MySwitchProvider>
-    </MyBotProvider>
-  </MyProvider>
+        </MySwitchProvider>
+      </MyBotProvider>
+    </MyProvider>
+  </AuthProvider>
 );

@@ -20,7 +20,6 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
       : [...watchList, movieObj];
 
     setWatchList(updatedList);
-    localStorage.setItem("watchList", JSON.stringify(updatedList));
     setIsLiked(!isLiked);
   }
 

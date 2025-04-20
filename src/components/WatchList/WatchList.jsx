@@ -7,18 +7,19 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
 
 function WatchList() {
-  const { watchList, setWatchList } = useContext(MyContext);
+  const { watchList, setWatchList} =
+    useContext(MyContext);
   const [genres, setGenres] = useState([]);
   const [searchField, setSearchField] = useState("");
   const [activeGenre, setActiveGenre] = useState("All Genre");
   const [view, setView] = useState(() => {
     return localStorage.getItem("WatchListView") || "Detail";
   });
-  const { authenticated, setAuthenticated } = useContext(AuthContext);
+  const { authenticated, setAuthenticated, setUsername, setEmail } = useContext(AuthContext);
   useEffect(() => {
     localStorage.setItem("WatchListView", view);
   }, [view]);
-  console.log(authenticated);
+
   useEffect(() => {
     const newGenres = new Set();
 
@@ -35,6 +36,15 @@ function WatchList() {
     setSearchField(e.target.value);
   }
 
+  function handelLogout() {
+    setAuthenticated(false);
+    setUsername("User");
+    setEmail("");
+    setWatchList([]);
+    localStorage.removeItem("authenticated");
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
+  }
   return (
     <div className="px-2 sm:px-4 md:px-6">
       {/* Genre Based Filtering */}
@@ -87,13 +97,7 @@ function WatchList() {
             </Link>
           </p>
         ) : (
-          <p
-            className="text-red-400 cursor-pointer"
-            onClick={() => {
-              setAuthenticated(false);
-              setWatchList([]);
-            }}
-          >
+          <p className="text-red-400 cursor-pointer" onClick={handelLogout}>
             Logout
           </p>
         )}

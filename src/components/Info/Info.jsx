@@ -90,12 +90,10 @@ function Info() {
       // remove from watchList
       const updatedList = watchList.filter((mov) => mov.id !== movie.id);
       setWatchList(updatedList);
-      localStorage.setItem("watchList", JSON.stringify(updatedList));
     } else {
       // add to watchList
       const updatedList = [...watchList, movie];
       setWatchList(updatedList);
-      localStorage.setItem("watchList", JSON.stringify(updatedList));
     }
     setIsLiked(!isLiked);
   };

@@ -10,7 +10,7 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_API_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Login() {
-  const { setUsername, setAuthenticated, authenticated } =
+  const { setUsername, setAuthenticated, authenticated, setEmail } =
     useContext(AuthContext);
   const navigate = useNavigate();
   
@@ -56,6 +56,7 @@ function Login() {
 
       setAuthenticated(true);
       setUsername(userData.fullname);
+      setEmail(userData.email)
 
       // Handle watchList merging
       let userWatchList = [];
