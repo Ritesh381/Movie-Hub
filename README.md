@@ -72,6 +72,8 @@ _Main Page Screenshot_
     ```
     VITE_TMDB_API_KEY=your_tmdb_api_key
     VITE_GEMINI_API_KEY=your_gemini_api_key
+    VITE_SUPABASE_API_KEY=your_supabase_api_key
+    VITE_PROJ_URL=your_supabase_project_url
     ```
 
 4. Run the development server:
