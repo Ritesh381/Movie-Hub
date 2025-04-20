@@ -5,10 +5,12 @@ import { InitialPrompt } from "../../assets/chatbot";
 import { GoogleGenAI } from "@google/genai";
 import { GEMINI_API_KEY } from "../../assets/key";
 import { MyBotContext } from "../Context/BotMessageContext";
+import { AuthContext } from "../Context/Auth";
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 function BotInterface({ height = 700, setActive }) {
+  const {username} = useContext(AuthContext)
   const [message, setMessage] = useState("");
   const { messageHistory, setMessageHistory } = useContext(MyBotContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +77,7 @@ function BotInterface({ height = 700, setActive }) {
 
   const sendMessage = () => {
     if (message.trim() === "" || isLoading) return;
-    const newMessage = { user: "user", msg: { movieNames: [], message } };
+    const newMessage = { user: username, msg: { movieNames: [], message } };
     setMessageHistory((prev) => [...prev, newMessage]);
     fetchData(message);
     setMessage("");

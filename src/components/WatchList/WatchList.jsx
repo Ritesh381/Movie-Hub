@@ -3,6 +3,7 @@ import genreData from "../../assets/genre.json";
 import WatchListCard from "./WatchListCard";
 import WatchListDetail from "./WatchListDetail";
 import { MyContext } from "../Context/WatchListContext";
+import { Link } from "react-router-dom";
 
 function WatchList() {
   const { watchList } = useContext(MyContext);
@@ -76,7 +77,8 @@ function WatchList() {
       </div>
 
       {/* View Toggle Button */}
-      <div className="flex justify-end mb-2 sm:mb-3 md:mb-4">
+      <div className="flex justify-between mb-2 sm:mb-3 md:mb-4">
+        <p className="text-white text-left">Save your watchList by <Link to={"/login"} className="text-red-400">Signup/Login</Link></p>
         <button
           className="px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-lg shadow-md bg-red-400 text-xs sm:text-sm md:text-base"
           onClick={() =>

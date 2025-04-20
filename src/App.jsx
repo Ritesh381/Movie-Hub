@@ -16,27 +16,31 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <BrowserRouter>
         <NavBar />
 
-        <Routes>
-          <Route path="/" element={<Movies />} />
-          <Route path="/watchlist" element={<WatchList />} />
-          <Route path="/recommend" element={<MovieRecommendation />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/info" element={<Info />}></Route>
-          <Route path="/trending" element={<TrendingPage />}></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
-          <Route path="/upcoming" element={<UpcomingPage />}></Route>
-          <Route path="/top-rated" element={<TopRatedPage />}></Route>
-        </Routes>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Movies />} />
+            <Route path="/watchlist" element={<WatchList />} />
+            <Route path="/recommend" element={<MovieRecommendation />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/info" element={<Info />} />
+            <Route path="/trending" element={<TrendingPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/upcoming" element={<UpcomingPage />} />
+            <Route path="/top-rated" element={<TopRatedPage />} />
+          </Routes>
+        </main>
+
         <AiBot />
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   );
 }
+
 
 export default App;
