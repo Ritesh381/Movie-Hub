@@ -32,7 +32,7 @@ export const MyProvider = ({ children }) => {
   async function updateWatchList() {
     console.log(authenticated, email)
     if(!authenticated) return
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("movie-hub-authentication")
       .update({ watchList: JSON.stringify(watchList) })
       .eq("email", email);
