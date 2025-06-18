@@ -29,10 +29,10 @@ function SearchPage() {
   }, [location.search, pageNo, switchmov]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-black">
+    <div className="flex flex-col justify-center items-center bg-ultra-black min-h-screen py-12 page-transition">
       {movies.length == 0 ? (
-        <p className="text-4xl text-white self-start ml-5">
-          No results found for: {original}
+        <p className="text-2xl md:text-3xl font-medium text-white text-center">
+          🔍 No results found for: <span className="text-white">{original}</span>
         </p>
       ) : (
         <div className="m-6">
