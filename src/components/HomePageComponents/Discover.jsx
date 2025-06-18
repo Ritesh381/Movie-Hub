@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { API_KEY } from "../../assets/key";
 import Pagination from "../commonComponents/Pagination";
 import MovieCard from "../commonComponents/MovieCard";
+import { MiniLoader } from "../commonComponents/CircularLoader";
 
 function Discover() {
   const sortingOptions = [
@@ -33,7 +34,8 @@ function Discover() {
   });
 
   useEffect(() => {
-    setAdult(false)
+    setAdult(false);
+    setLoading(true);
     axios
       .get(
         `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=${adult}&language=en-US&page=${pageNo}&sort_by=${selectedSorting}`
@@ -42,14 +44,17 @@ function Discover() {
         setMovies(response.data.results);
         setLoading(false);
       })
-      .catch((error) => console.log("Error: " + error));
+      .catch((error) => {
+        console.log("Error: " + error);
+        setLoading(false);
+      });
     localStorage.setItem("pageNoDiscover", pageNo);
     localStorage.setItem("selectedSortingDiscover", selectedSorting)
   }, [pageNo, selectedSorting, adult]);
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl text-orange-300 md:text-3xl font-bold mb-6 text-center">
-        Discover Movies
+    <div className="container mx-auto px-4 py-8 bg-ultra-black min-h-screen page-transition">
+      <h1 className="text-2xl md:text-3xl font-medium text-white text-center mb-8">
+        🔍 Discover
       </h1>
 
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
@@ -65,15 +70,15 @@ function Discover() {
           </button> */}
         </div>
 
-        <div className="flex items-center space-x-4 text-black">
-          <label htmlFor="sorting" className="text-sm text-white font-medium">
+        <div className="flex items-center space-x-6">
+          <label htmlFor="sorting" className="text-sm text-neon-purple font-medium">
             Sort by:
           </label>
           <select
             id="sorting"
             value={selectedSorting}
             onChange={(e) => setSelectedSorting(e.target.value)}
-            className="border bg-blue-400 rounded px-2 py-2 text-sm"
+            className="modern-input px-4 py-2 text-sm rounded-full"
           >
             {sortingOptions.map((option) => (
               <option key={option} value={option}>
@@ -87,8 +92,8 @@ function Discover() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center h-64 text-white">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-blue-500"></div>
+        <div className="flex justify-center items-center h-64">
+          <MiniLoader size={80} />
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

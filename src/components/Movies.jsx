@@ -9,14 +9,18 @@ function Movies() {
   return (
     <div>
       <Banner />
-      <Trending />
-      <br />
-      <Upcoming />
-      <br />
-      <TopRated />
-      <br />
-      <Discover />
-      <br />
+      <div className="-mt-8">
+        <Trending />
+      </div>
+      <div className="mt-12">
+        <Upcoming />
+      </div>
+      <div className="mt-12">
+        <TopRated />
+      </div>
+      <div className="mt-12">
+        <Discover />
+      </div>
     </div>
   );
 }

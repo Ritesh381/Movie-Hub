@@ -26,7 +26,7 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
   return (
     <div
       className={`relative flex-shrink-0 w-${width} sm:w-48 md:w-56 h-${height} sm:h-72 md:h-80 
-      rounded-lg overflow-hidden shadow-lg 
+      rounded-2xl overflow-hidden modern-card
       hover:scale-105 duration-300 group`}
     >
       {movieObj.poster_path || movieObj.backdrop_path ? (
@@ -48,21 +48,22 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex flex-col justify-end">
         <Link to={`/info?id=${movieObj.id}`}>
           <div
-            className="absolute bottom-0 w-full bg-black/70 text-white text-center 
-          text-xs sm:text-sm md:text-base p-1 sm:p-2 hover:bg-black/90 hover:text-blue-400"
+            className="absolute bottom-0 w-full bg-black/60 backdrop-blur-md text-white text-center 
+          text-xs sm:text-sm md:text-base p-3 sm:p-4 hover:bg-black/80 transition-all duration-300"
           >
-            {title.length > 20
-              ? `${title.slice(0, 20)}...`
-              : title}
+            <span className="font-medium">
+              {title.length > 20
+                ? `${title.slice(0, 20)}...`
+                : title}
+            </span>
           </div>
         </Link>
 
-        <div className="absolute top-2 right-2 flex gap-2 space-x-1">
+        <div className="absolute top-3 right-3 flex gap-2 flex-col">
           <div
-            className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
-            hover:bg-black/70 flex items-center"
+            className="floating-action p-2 rounded-full neon-glow-purple"
           >
-            <span className="text-xs sm:text-sm">
+            <span className="text-xs sm:text-sm font-medium text-white">
               ⭐{" "}
               {movieObj.vote_average ? movieObj.vote_average.toFixed(1) : "N/A"}
             </span>
@@ -70,20 +71,20 @@ function MovieCard({ movieObj, height = 60, width = 40 }) {
 
           <Link
             to={`/info?id=${movieObj.id}`}
-            className="text-white bg-black/50 p-1 sm:p-2 rounded-full 
-              hover:bg-black/70 flex items-center justify-center"
+            className="floating-action p-2 rounded-full flex items-center justify-center neon-glow-blue"
           >
-            <Info className="w-3 h-3 sm:w-4 sm:h-4" />
+            <Info className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
           </Link>
 
           <button
-            className="text-red-600 bg-black/50 p-1 sm:p-2 rounded-full 
-              hover:bg-black/70 flex items-center justify-center"
+            className={`floating-action p-2 rounded-full flex items-center justify-center ${
+                isLiked ? "neon-glow-pink" : ""
+              }`}
             onClick={liked}
           >
             <Heart
-              className={`w-3 h-3 sm:w-4 sm:h-4 
-                ${isLiked ? "fill-red-600" : "fill-transparent"}`}
+              className={`w-3 h-3 sm:w-4 sm:h-4 text-white
+                ${isLiked ? "fill-white" : "fill-transparent"}`}
               strokeWidth={1.5}
             />
           </button>

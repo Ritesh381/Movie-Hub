@@ -58,28 +58,41 @@ const BannerSlider = ({ banners }) => {
             className="relative w-full h-full object-cover rounded-xl shadow-lg transition-opacity duration-[4500ms]"
           />
 
-          <Link to={`/info?id=${banners[index]?.id}`} className="group">
-            <div className="absolute top-5 left-5 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-lg text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300 group-hover:bg-black/70 group-hover:scale-105 group-hover:text-blue-300">
-              {banners[index]?.title}
-            </div>
-          </Link>
+          {/* Simple Movie Title Display */}
+          <div className="absolute top-6 left-6 z-20">
+            <Link to={`/info?id=${mov.id}`} className="group">
+              <div className="bg-black/60 backdrop-blur-md text-white px-6 py-3 rounded-full transition-all duration-300 group-hover:bg-black/80 group-hover:scale-105 border border-white/20 group-hover:border-white/40">
+                <h2 className="text-lg md:text-xl lg:text-2xl font-bold group-hover:text-cyan-300 transition-colors duration-300">
+                  {mov.title}
+                </h2>
+              </div>
+            </Link>
+          </div>
         </div>
       ))}
 
-      {/* Left buton*/}
+      {/* Left button */}
       <button
-        onClick={() => handleManualChange("prev")}
-        className="absolute left-5 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition z-10"
+        onClick={() => {
+          console.log("Left arrow clicked");
+          handleManualChange("prev");
+        }}
+        className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white p-4 rounded-full transition-all duration-300 z-50 hover:scale-110 border border-white/30 hover:border-white/60 group cursor-pointer"
+        style={{ pointerEvents: 'auto' }}
       >
-        <ChevronLeft size={30} />
+        <ChevronLeft size={28} className="group-hover:text-cyan-300 transition-colors duration-300" />
       </button>
 
       {/* Right button */}
       <button
-        onClick={() => handleManualChange("next")}
-        className="absolute right-5 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition z-10"
+        onClick={() => {
+          console.log("Right arrow clicked");
+          handleManualChange("next");
+        }}
+        className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 backdrop-blur-md text-white p-4 rounded-full transition-all duration-300 z-50 hover:scale-110 border border-white/30 hover:border-white/60 group cursor-pointer"
+        style={{ pointerEvents: 'auto' }}
       > 
-        <ChevronRight size={30} />
+        <ChevronRight size={28} className="group-hover:text-cyan-300 transition-colors duration-300" />
       </button>
     </div>
   );

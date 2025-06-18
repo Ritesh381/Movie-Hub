@@ -26,9 +26,9 @@ function UpcomingPage() {
   }, [pageNo]);
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-orange-300 my-5">
-      Upcoming Movies
+    <div className="flex flex-col items-center bg-ultra-black min-h-screen py-12 page-transition">
+      <h1 className="text-2xl md:text-3xl font-medium text-white mb-8">
+      🎬 Upcoming Movies
       </h1>
 
       <VerticalView movies={movies}/>
