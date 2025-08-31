@@ -14,11 +14,7 @@
   --accent-neon-red: #f87171;
 }
 
-/* Global Ultra Black Base */
-* {
-  border: none !important;
-  outline: none !important;
-}
+
 
 body {
   background: var(--pure-black);

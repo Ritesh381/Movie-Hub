@@ -47,7 +47,7 @@ function Message({ msgObj }) {
   }, [msgObj]); // Re-run if msgObj changes
 
   return (
-    <div className="flex flex-col bg-gray-300 rounded-2xl p-2 mt-2 md-2">
+    <div className="flex flex-col bg-blue-500 rounded-2xl p-2 mt-2 md-2">
       <p className="font-bold text-xl">{msgObj.user}</p>
       <div>
         {msgObj.msg.message.split("\n").map((line, index) => (

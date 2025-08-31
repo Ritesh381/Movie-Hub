@@ -153,7 +153,7 @@ function BotInterface({ height = 700, setActive }) {
       <div className="flex items-center mt-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500 bg-white">
         <input
           type="text"
-          className="flex-grow outline-none bg-transparent"
+          className="flex-grow outline-none bg-transparent text-black"
           placeholder="Type a message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}

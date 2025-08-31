@@ -63,7 +63,10 @@ function Banner() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="transform hover:scale-110 transition-all duration-300 group">
+            <Link
+              to="/"
+              className="transform hover:scale-110 transition-all duration-300 group"
+            >
               <div className="bg-white/90 backdrop-blur-md rounded-full p-2 md:p-3 lg:p-4 shadow-xl border border-white/30 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
                 <img
                   src={logo}
@@ -76,19 +79,31 @@ function Banner() {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link to="/" className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group">
+            <Link
+              to="/"
+              className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group"
+            >
               <span className="relative z-10">Home</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
-            <Link to="/watchlist" className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group">
+            <Link
+              to="/watchlist"
+              className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group"
+            >
               <span className="relative z-10">WatchList</span>
               <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
-            <Link to="/trending" className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group">
+            <Link
+              to="/trending"
+              className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group"
+            >
               <span className="relative z-10">Trending</span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
-            <Link to="/upcoming" className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group">
+            <Link
+              to="/upcoming"
+              className="relative text-white/90 hover:text-white text-sm font-medium transition-all duration-300 px-4 py-2 rounded-full hover:bg-white/10 hover:backdrop-blur-md hover:scale-105 group"
+            >
               <span className="relative z-10">Upcoming</span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
@@ -99,7 +114,7 @@ function Banner() {
       <BannerSlider banners={banners} />
 
       {/* Creative Overlay Effects */}
-      <div className="absolute inset-0 z-10">
+      <div className="absolute inset-0 z-10 pointer-events-none">
         {/* Floating particles */}
         <div className="absolute top-20 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-bounce opacity-70"></div>
         <div className="absolute top-32 right-20 w-3 h-3 bg-pink-500 rounded-full animate-pulse opacity-60"></div>
@@ -113,7 +128,10 @@ function Banner() {
       </div>
 
       {/* Searching area */}
-      <div className="absolute inset-0 flex items-center justify-center z-20 px-4 pt-16" style={{ pointerEvents: 'none' }}>
+      <div
+        className="absolute inset-0 flex items-center justify-center z-20 px-4 pt-16"
+        style={{ pointerEvents: "none" }}
+      >
         <div className="w-full max-w-2xl text-center">
           {/* Clean animated title */}
           <div className="mb-12">
@@ -129,7 +147,10 @@ function Banner() {
           </div>
 
           {/* Clean search box */}
-          <div className="relative group mb-6" style={{ pointerEvents: 'auto' }}>
+          <div
+            className="relative group mb-6"
+            style={{ pointerEvents: "auto" }}
+          >
             <div className="flex items-center bg-black/40 backdrop-blur-xl rounded-full p-2 shadow-2xl border border-white/30 hover:border-white/50 transition-all duration-300">
               <input
                 value={searchQuery}
@@ -138,14 +159,16 @@ function Banner() {
                 type="text"
                 placeholder="Search for your next favorite movie..."
                 className="flex-1 bg-transparent text-white text-lg md:text-xl placeholder-white/60 px-6 py-4 focus:outline-none font-medium"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               />
               <button
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl md:text-2xl transition-all duration-300 hover:scale-105 shadow-lg group"
                 onClick={handelSearch}
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               >
-                <span className="group-hover:animate-spin transition-transform duration-300">🔍</span>
+                <span className="group-hover:animate-spin transition-transform duration-300">
+                  🔍
+                </span>
               </button>
             </div>
           </div>

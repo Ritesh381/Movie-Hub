@@ -13,14 +13,13 @@ function Login() {
   const { setUsername, setAuthenticated, authenticated, setEmail } =
     useContext(AuthContext);
   const navigate = useNavigate();
-  
-  
+
   useEffect(() => {
     if (authenticated) {
       navigate("/");
     }
   }, [authenticated]);
-  
+
   const { watchList, setWatchList } = useContext(MyContext);
   const [wrong, setWrong] = useState(false);
   const [form, setForm] = useState({
@@ -56,7 +55,7 @@ function Login() {
 
       setAuthenticated(true);
       setUsername(userData.fullname);
-      setEmail(userData.email)
+      setEmail(userData.email);
 
       // Handle watchList merging
       let userWatchList = [];
@@ -76,7 +75,7 @@ function Login() {
             !watchList.some((existingItem) => existingItem.id === item.id)
         ),
       ];
-      
+
       setWatchList(combinedWatchList);
 
       // Update Supabase if local list had new items
@@ -99,7 +98,7 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 text-black">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Welcome Back 👋
@@ -112,8 +111,9 @@ function Login() {
             onChange={handleChange}
             placeholder="Email"
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
           />
+
           <input
             type="password"
             name="password"
@@ -122,7 +122,7 @@ function Login() {
             placeholder="Password"
             required
             autoComplete="off"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-full px-4 py-2 border border-black  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
           />
           {wrong && <p className="text-red-400">Email or Password is wrong</p>}
           <button
